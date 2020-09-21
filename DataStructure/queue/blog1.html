@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>队列 Queue | 大木_笔记</title>
+    <meta name="generator" content="VuePress 1.5.4">
+    
+    <meta name="description" content="记录工作和学习过程中的笔记">
+    <link rel="preload" href="/ysblog/assets/css/0.styles.e661b340.css" as="style"><link rel="preload" href="/ysblog/assets/js/app.05f40ecb.js" as="script"><link rel="preload" href="/ysblog/assets/js/2.101f09ec.js" as="script"><link rel="preload" href="/ysblog/assets/js/4.ee24ae0f.js" as="script"><link rel="prefetch" href="/ysblog/assets/js/10.aba1ce7e.js"><link rel="prefetch" href="/ysblog/assets/js/11.232cd946.js"><link rel="prefetch" href="/ysblog/assets/js/12.22125e24.js"><link rel="prefetch" href="/ysblog/assets/js/13.641bf3cf.js"><link rel="prefetch" href="/ysblog/assets/js/14.24ccc943.js"><link rel="prefetch" href="/ysblog/assets/js/15.56161087.js"><link rel="prefetch" href="/ysblog/assets/js/16.205bd373.js"><link rel="prefetch" href="/ysblog/assets/js/17.bd633a29.js"><link rel="prefetch" href="/ysblog/assets/js/18.33d43e7e.js"><link rel="prefetch" href="/ysblog/assets/js/19.a2911d20.js"><link rel="prefetch" href="/ysblog/assets/js/20.07624a1c.js"><link rel="prefetch" href="/ysblog/assets/js/21.a4151fba.js"><link rel="prefetch" href="/ysblog/assets/js/22.141540b5.js"><link rel="prefetch" href="/ysblog/assets/js/23.91fde9ee.js"><link rel="prefetch" href="/ysblog/assets/js/24.cca104ac.js"><link rel="prefetch" href="/ysblog/assets/js/25.5cc0b6e3.js"><link rel="prefetch" href="/ysblog/assets/js/26.5835c007.js"><link rel="prefetch" href="/ysblog/assets/js/27.132ee99d.js"><link rel="prefetch" href="/ysblog/assets/js/28.dae014a1.js"><link rel="prefetch" href="/ysblog/assets/js/29.a922ac25.js"><link rel="prefetch" href="/ysblog/assets/js/3.859ec158.js"><link rel="prefetch" href="/ysblog/assets/js/30.215eea15.js"><link rel="prefetch" href="/ysblog/assets/js/31.a6a3ecad.js"><link rel="prefetch" href="/ysblog/assets/js/32.2f04c66d.js"><link rel="prefetch" href="/ysblog/assets/js/33.2e16f460.js"><link rel="prefetch" href="/ysblog/assets/js/34.6f7d019b.js"><link rel="prefetch" href="/ysblog/assets/js/35.72665780.js"><link rel="prefetch" href="/ysblog/assets/js/36.f8c9d77b.js"><link rel="prefetch" href="/ysblog/assets/js/37.aa3efe17.js"><link rel="prefetch" href="/ysblog/assets/js/38.6cb4e1db.js"><link rel="prefetch" href="/ysblog/assets/js/39.43e17a0d.js"><link rel="prefetch" href="/ysblog/assets/js/5.bd54095f.js"><link rel="prefetch" href="/ysblog/assets/js/6.dcc1de99.js"><link rel="prefetch" href="/ysblog/assets/js/7.316c9739.js"><link rel="prefetch" href="/ysblog/assets/js/8.87405e82.js"><link rel="prefetch" href="/ysblog/assets/js/9.de91e189.js">
+    <link rel="stylesheet" href="/ysblog/assets/css/0.styles.e661b340.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/ysblog/" class="home-link router-link-active"><!----> <span class="site-name">大木_笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/ysblog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端" class="mobile-dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/web/JS/blog1.html" class="nav-link">
+  JS
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/browser/blog1.html" class="nav-link">
+  浏览器
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/jQuery/blog1.html" class="nav-link">
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/underscore/blog1.html" class="nav-link">
+  underscore
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/webpack/blog1.html" class="nav-link">
+  webpack
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/vue/blog1.html" class="nav-link">
+  vue
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据结构" class="dropdown-title"><span class="title">数据结构</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据结构" class="mobile-dropdown-title"><span class="title">数据结构</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/DataStructure/queue/blog1.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  队列
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/other/regex/blog1.html" class="nav-link">
+  正则表达式
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/ysblog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端" class="mobile-dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/web/JS/blog1.html" class="nav-link">
+  JS
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/browser/blog1.html" class="nav-link">
+  浏览器
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/jQuery/blog1.html" class="nav-link">
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/underscore/blog1.html" class="nav-link">
+  underscore
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/webpack/blog1.html" class="nav-link">
+  webpack
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/vue/blog1.html" class="nav-link">
+  vue
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据结构" class="dropdown-title"><span class="title">数据结构</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据结构" class="mobile-dropdown-title"><span class="title">数据结构</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/DataStructure/queue/blog1.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  队列
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/other/regex/blog1.html" class="nav-link">
+  正则表达式
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>队列</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/ysblog/DataStructure/queue/blog1.html" aria-current="page" class="active sidebar-link">队列 Queue</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ysblog/DataStructure/queue/blog1.html#先入先出-fifo" class="sidebar-link">先入先出（FIFO）</a></li><li class="sidebar-sub-header"><a href="/ysblog/DataStructure/queue/blog1.html#循环队列" class="sidebar-link">循环队列</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ysblog/DataStructure/queue/blog1.html#实现循环队列。" class="sidebar-link">实现循环队列。</a></li><li class="sidebar-sub-header"><a href="/ysblog/DataStructure/queue/blog1.html#代码实现" class="sidebar-link">代码实现</a></li></ul></li></ul></li><li><a href="/ysblog/DataStructure/queue/blog2.html" class="sidebar-link">经典例题</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="队列-queue"><a href="#队列-queue" class="header-anchor">#</a> 队列 Queue</h1> <h2 id="先入先出-fifo"><a href="#先入先出-fifo" class="header-anchor">#</a> 先入先出（FIFO）</h2> <p><img src="/ysblog/assets/img/screen-shot-2018-05-03-at-151021.afa2d84e.png" alt=""></p> <p>如上图所示，队列遵循先入先出原则</p> <p><strong>入队（Enqueue）</strong>: 插入元素，新元素始终添加在队列末尾Tail</p> <p><strong>出队（Dequeue）</strong>：删除元素，只能删除队首Head 元素</p> <h2 id="循环队列"><a href="#循环队列" class="header-anchor">#</a> 循环队列</h2> <p>循环队列是一种线性数据结构，其操作表现基于 FIFO（先进先出）原则并且队尾被连接在队首之后以形成一个循环。它也被称为“环形缓冲器”。</p> <p>循环队列的一个好处是我们可以利用这个队列之前用过的空间。在一个普通队列里，一旦一个队列满了，我们就不能插入下一个元素，即使在队列前面仍有空间。但是使用循环队列，我们能使用这些空间去存储新的值。**</p> <p><img src="/ysblog/assets/img/queue1.71a41eff.jpg" alt=""></p> <h3 id="实现循环队列。"><a href="#实现循环队列。" class="header-anchor">#</a> 实现循环队列。</h3> <p>支持如下操作：</p> <p>MyCircularQueue(k): 构造器，设置队列长度为 k 。</p> <p>Front: 从队首获取元素。如果队列为空，返回 -1 。</p> <p>Rear: 获取队尾元素。如果队列为空，返回 -1 。</p> <p>enQueue(value): 向循环队列插入一个元素。如果成功插入则返回真。</p> <p>deQueue(): 从循环队列中删除一个元素。如果成功删除则返回真。</p> <p>isEmpty(): 检查循环队列是否为空。</p> <p>isFull(): 检查循环队列是否已满。</p> <p>MyCircularQueue circularQueue = new MyCircularQueue(3); // 设置长度为 3</p> <p>circularQueue.enQueue(1);  // 返回 true</p> <p>circularQueue.enQueue(2);  // 返回 true</p> <p>circularQueue.enQueue(3);  // 返回 true</p> <p>circularQueue.enQueue(4);  // 返回 false，队列已满</p> <p>circularQueue.Rear();  // 返回 3</p> <p>circularQueue.isFull();  // 返回 true</p> <p>circularQueue.deQueue();  // 返回 true</p> <p>circularQueue.enQueue(4);  // 返回 true</p> <p>circularQueue.Rear();  // 返回 4</p> <p><strong>队空</strong>: Tail == Head == -1</p> <p><strong>队满</strong>: Head == (Tail + 1) % n
+<img src="/ysblog/assets/img/queue1.71a41eff.jpg" alt=""></p> <h3 id="代码实现"><a href="#代码实现" class="header-anchor">#</a> 代码实现</h3> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">/**
+ * Initialize your data structure here. Set the size of the queue to be k.
+ * @param {number} k
+ */</span>
+<span class="token keyword">let</span> <span class="token function-variable function">MyCircularQueue</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">k</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>tatal <span class="token operator">=</span> k
+    <span class="token keyword">this</span><span class="token punctuation">.</span>head <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>tail <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * Insert an element into the circular queue. Return true if the operation is successful. 
+ * @param {number} value
+ * @return {boolean}
+ */</span>
+<span class="token class-name">MyCircularQueue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">enQueue</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">isFull</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>head <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>tail <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>tail <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token keyword">this</span><span class="token punctuation">.</span>tatal
+    <span class="token keyword">this</span><span class="token punctuation">.</span>list<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>tail<span class="token punctuation">]</span> <span class="token operator">=</span> value
+    <span class="token keyword">return</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * Delete an element from the circular queue. Return true if the operation is successful.
+ * @return {boolean}
+ */</span>
+<span class="token class-name">MyCircularQueue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">deQueue</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>head <span class="token operator">==</span> <span class="token keyword">this</span><span class="token punctuation">.</span>tail<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>head <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>tail <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>list<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>head<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">undefined</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>head <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>head <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token keyword">this</span><span class="token punctuation">.</span>tatal
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * Get the front item from the queue.
+ * @return {number}
+ */</span>
+<span class="token class-name">MyCircularQueue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">Front</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>list<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>head<span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+ * Get the last item from the queue.
+ * @return {number}
+ */</span>
+<span class="token class-name">MyCircularQueue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">Rear</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>list<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>tail<span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * Checks whether the circular queue is empty or not.
+ * @return {boolean}
+ */</span>
+<span class="token class-name">MyCircularQueue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">isEmpty</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>tail <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * Checks whether the circular queue is full or not.
+ * @return {boolean}
+ */</span>
+<span class="token class-name">MyCircularQueue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">isFull</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>head <span class="token operator">==</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>tail <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token keyword">this</span><span class="token punctuation">.</span>tatal
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><!----> <span class="next"><a href="/ysblog/DataStructure/queue/blog2.html">
+        经典例题
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/ysblog/assets/js/app.05f40ecb.js" defer></script><script src="/ysblog/assets/js/2.101f09ec.js" defer></script><script src="/ysblog/assets/js/4.ee24ae0f.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>this 的工作原理 | 大木_笔记</title>
+    <meta name="generator" content="VuePress 1.5.4">
+    
+    <meta name="description" content="记录工作和学习过程中的笔记">
+    <link rel="preload" href="/ysblog/assets/css/0.styles.e661b340.css" as="style"><link rel="preload" href="/ysblog/assets/js/app.05f40ecb.js" as="script"><link rel="preload" href="/ysblog/assets/js/2.101f09ec.js" as="script"><link rel="preload" href="/ysblog/assets/js/17.bd633a29.js" as="script"><link rel="prefetch" href="/ysblog/assets/js/10.aba1ce7e.js"><link rel="prefetch" href="/ysblog/assets/js/11.232cd946.js"><link rel="prefetch" href="/ysblog/assets/js/12.22125e24.js"><link rel="prefetch" href="/ysblog/assets/js/13.641bf3cf.js"><link rel="prefetch" href="/ysblog/assets/js/14.24ccc943.js"><link rel="prefetch" href="/ysblog/assets/js/15.56161087.js"><link rel="prefetch" href="/ysblog/assets/js/16.205bd373.js"><link rel="prefetch" href="/ysblog/assets/js/18.33d43e7e.js"><link rel="prefetch" href="/ysblog/assets/js/19.a2911d20.js"><link rel="prefetch" href="/ysblog/assets/js/20.07624a1c.js"><link rel="prefetch" href="/ysblog/assets/js/21.a4151fba.js"><link rel="prefetch" href="/ysblog/assets/js/22.141540b5.js"><link rel="prefetch" href="/ysblog/assets/js/23.91fde9ee.js"><link rel="prefetch" href="/ysblog/assets/js/24.cca104ac.js"><link rel="prefetch" href="/ysblog/assets/js/25.5cc0b6e3.js"><link rel="prefetch" href="/ysblog/assets/js/26.5835c007.js"><link rel="prefetch" href="/ysblog/assets/js/27.132ee99d.js"><link rel="prefetch" href="/ysblog/assets/js/28.dae014a1.js"><link rel="prefetch" href="/ysblog/assets/js/29.a922ac25.js"><link rel="prefetch" href="/ysblog/assets/js/3.859ec158.js"><link rel="prefetch" href="/ysblog/assets/js/30.215eea15.js"><link rel="prefetch" href="/ysblog/assets/js/31.a6a3ecad.js"><link rel="prefetch" href="/ysblog/assets/js/32.2f04c66d.js"><link rel="prefetch" href="/ysblog/assets/js/33.2e16f460.js"><link rel="prefetch" href="/ysblog/assets/js/34.6f7d019b.js"><link rel="prefetch" href="/ysblog/assets/js/35.72665780.js"><link rel="prefetch" href="/ysblog/assets/js/36.f8c9d77b.js"><link rel="prefetch" href="/ysblog/assets/js/37.aa3efe17.js"><link rel="prefetch" href="/ysblog/assets/js/38.6cb4e1db.js"><link rel="prefetch" href="/ysblog/assets/js/39.43e17a0d.js"><link rel="prefetch" href="/ysblog/assets/js/4.ee24ae0f.js"><link rel="prefetch" href="/ysblog/assets/js/5.bd54095f.js"><link rel="prefetch" href="/ysblog/assets/js/6.dcc1de99.js"><link rel="prefetch" href="/ysblog/assets/js/7.316c9739.js"><link rel="prefetch" href="/ysblog/assets/js/8.87405e82.js"><link rel="prefetch" href="/ysblog/assets/js/9.de91e189.js">
+    <link rel="stylesheet" href="/ysblog/assets/css/0.styles.e661b340.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/ysblog/" class="home-link router-link-active"><!----> <span class="site-name">大木_笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/ysblog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端" class="mobile-dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/web/JS/blog1.html" class="nav-link">
+  JS
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/browser/blog1.html" class="nav-link">
+  浏览器
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/jQuery/blog1.html" class="nav-link">
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/underscore/blog1.html" class="nav-link">
+  underscore
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/webpack/blog1.html" class="nav-link">
+  webpack
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/vue/blog1.html" class="nav-link">
+  vue
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据结构" class="dropdown-title"><span class="title">数据结构</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据结构" class="mobile-dropdown-title"><span class="title">数据结构</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/DataStructure/queue/blog1.html" class="nav-link">
+  队列
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/other/regex/blog1.html" class="nav-link">
+  正则表达式
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/ysblog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端" class="mobile-dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/web/JS/blog1.html" class="nav-link">
+  JS
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/browser/blog1.html" class="nav-link">
+  浏览器
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/jQuery/blog1.html" class="nav-link">
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/underscore/blog1.html" class="nav-link">
+  underscore
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/webpack/blog1.html" class="nav-link">
+  webpack
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/vue/blog1.html" class="nav-link">
+  vue
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据结构" class="dropdown-title"><span class="title">数据结构</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据结构" class="mobile-dropdown-title"><span class="title">数据结构</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/DataStructure/queue/blog1.html" class="nav-link">
+  队列
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/other/regex/blog1.html" class="nav-link">
+  正则表达式
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>JS</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/ysblog/web/JS/blog8.html" class="sidebar-link">函数</a></li><li><a href="/ysblog/web/JS/blog7.html" class="sidebar-link">变量及函数提升</a></li><li><a href="/ysblog/web/JS/blog6.html" class="sidebar-link">作用域与命名空间</a></li><li><a href="/ysblog/web/JS/blog1.html" class="sidebar-link">类型</a></li><li><a href="/ysblog/web/JS/blog9.html" class="sidebar-link">原型继承</a></li><li><a href="/ysblog/web/JS/blog5.html" class="sidebar-link">构造函数</a></li><li><a href="/ysblog/web/JS/blog2.html" aria-current="page" class="active sidebar-link">this 的工作原理</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ysblog/web/JS/blog2.html#全局范围内" class="sidebar-link">全局范围内</a></li><li class="sidebar-sub-header"><a href="/ysblog/web/JS/blog2.html#函数调用" class="sidebar-link">函数调用</a></li><li class="sidebar-sub-header"><a href="/ysblog/web/JS/blog2.html#方法调用" class="sidebar-link">方法调用</a></li><li class="sidebar-sub-header"><a href="/ysblog/web/JS/blog2.html#调用构造函数" class="sidebar-link">调用构造函数</a></li><li class="sidebar-sub-header"><a href="/ysblog/web/JS/blog2.html#显式的设置-this" class="sidebar-link">显式的设置 this</a></li><li class="sidebar-sub-header"><a href="/ysblog/web/JS/blog2.html#常见误解" class="sidebar-link">常见误解</a></li><li class="sidebar-sub-header"><a href="/ysblog/web/JS/blog2.html#方法的赋值表达式" class="sidebar-link">方法的赋值表达式</a></li></ul></li><li><a href="/ysblog/web/JS/blog3.html" class="sidebar-link">闭包和引用</a></li><li><a href="/ysblog/web/JS/blog4.html" class="sidebar-link">arguments 对象</a></li><li><a href="/ysblog/web/JS/blog10.html" class="sidebar-link">Promise</a></li><li><a href="/ysblog/web/JS/blog11.html" class="sidebar-link">偏函数</a></li><li><a href="/ysblog/web/JS/blog12.html" class="sidebar-link">require 和 import</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="this-的工作原理"><a href="#this-的工作原理" class="header-anchor">#</a> this 的工作原理</h1> <p>JavaScript 有一套完全不同于其它语言的对 this 的处理机制。 在五种不同的情况下 ，this 指向的各不相同</p> <h2 id="全局范围内"><a href="#全局范围内" class="header-anchor">#</a> 全局范围内</h2> <div class="language-javascript extra-class"><pre class="language-javascript"><code>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>   <span class="token comment">// window 对象</span>
+</code></pre></div><p>当在全部范围内使用 this，它将会指向全局对象。</p> <h2 id="函数调用"><a href="#函数调用" class="header-anchor">#</a> 函数调用</h2> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>   <span class="token comment">// window 对象</span>
+<span class="token punctuation">}</span>
+<span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div><p>这里 this 也会指向全局对象。</p> <h2 id="方法调用"><a href="#方法调用" class="header-anchor">#</a> 方法调用</h2> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">let</span> test <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">foo</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>   <span class="token comment">// test对象</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+test<span class="token punctuation">.</span><span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div><p>这个例子中，this 指向 test 对象。</p> <h2 id="调用构造函数"><a href="#调用构造函数" class="header-anchor">#</a> 调用构造函数</h2> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>   <span class="token comment">// f对象</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">let</span> f <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>如果函数倾向于和 new 关键词一块使用，则我们称这个函数是 构造函数。 在函数内部，this 指向新创建的对象。</p> <h2 id="显式的设置-this"><a href="#显式的设置-this" class="header-anchor">#</a> 显式的设置 this</h2> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>   <span class="token comment">// bar对象</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> bar <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token function">foo</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>bar<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>   <span class="token comment">// 数组将会被扩展，如下所示</span>
+<span class="token function">foo</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>bar<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>  <span class="token comment">// 传递到foo的参数是：a = 1, b = 2, c = 3</span>
+</code></pre></div><p>当使用 Function.prototype 上的 call 或者 apply 方法时，函数内的 this 将会被 显式设置为函数调用的第一个参数。</p> <p>因此函数调用的规则在上例中已经不适用了，在foo 函数内 this 被设置成了 bar。</p> <h2 id="常见误解"><a href="#常见误解" class="header-anchor">#</a> 常见误解</h2> <p>尽管大部分的情况都说的过去，不过第二个规则，也就是直接调用函数时，this 指向全局对象，被认为是JavaScript语言另一个错误设计的地方，因为它从来就没有实际的用途。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">let</span> Foo <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+Foo<span class="token punctuation">.</span><span class="token function-variable function">method</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>   <span class="token comment">// Foo对象</span>
+    <span class="token keyword">function</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>   <span class="token comment">// window 对象</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// 直接调用函数，内部的this指向window对象</span>
+<span class="token punctuation">}</span>
+Foo<span class="token punctuation">.</span><span class="token function">method</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="方法的赋值表达式"><a href="#方法的赋值表达式" class="header-anchor">#</a> 方法的赋值表达式</h2> <p>另一个看起来奇怪的地方是函数别名，也就是将一个方法赋值给一个变量。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">let</span> someObject <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">methodTest</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>   <span class="token comment">// window 对象</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">var</span> test <span class="token operator">=</span> someObject<span class="token punctuation">.</span>methodTest
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div><p>上例中，test 就像一个普通的函数被调用；因此，函数内的 this 将不再被指向到 someObject 对象。
+虽然 this 的晚绑定特性似乎并不友好，但这确实是基于原型继承赖以生存的土壤。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">Foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token class-name">Foo</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">method</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>   <span class="token comment">// bar对象</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">Bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token class-name">Bar</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token class-name">Foo</span><span class="token punctuation">.</span>prototype
+
+<span class="token keyword">let</span> bar <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">method</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div><p>当 method 被调用时，this 将会指向 Bar 的实例对象 bar 。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/ysblog/web/JS/blog5.html" class="prev">
+        构造函数
+      </a></span> <span class="next"><a href="/ysblog/web/JS/blog3.html">
+        闭包和引用
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/ysblog/assets/js/app.05f40ecb.js" defer></script><script src="/ysblog/assets/js/2.101f09ec.js" defer></script><script src="/ysblog/assets/js/17.bd633a29.js" defer></script>
+  </body>
+</html>

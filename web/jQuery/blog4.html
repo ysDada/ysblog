@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>jQuery 缓存Data对象及队列queue | 大木_笔记</title>
+    <meta name="generator" content="VuePress 1.5.4">
+    
+    <meta name="description" content="记录工作和学习过程中的笔记">
+    <link rel="preload" href="/ysblog/assets/css/0.styles.e661b340.css" as="style"><link rel="preload" href="/ysblog/assets/js/app.05f40ecb.js" as="script"><link rel="preload" href="/ysblog/assets/js/2.101f09ec.js" as="script"><link rel="preload" href="/ysblog/assets/js/8.87405e82.js" as="script"><link rel="prefetch" href="/ysblog/assets/js/10.aba1ce7e.js"><link rel="prefetch" href="/ysblog/assets/js/11.232cd946.js"><link rel="prefetch" href="/ysblog/assets/js/12.22125e24.js"><link rel="prefetch" href="/ysblog/assets/js/13.641bf3cf.js"><link rel="prefetch" href="/ysblog/assets/js/14.24ccc943.js"><link rel="prefetch" href="/ysblog/assets/js/15.56161087.js"><link rel="prefetch" href="/ysblog/assets/js/16.205bd373.js"><link rel="prefetch" href="/ysblog/assets/js/17.bd633a29.js"><link rel="prefetch" href="/ysblog/assets/js/18.33d43e7e.js"><link rel="prefetch" href="/ysblog/assets/js/19.a2911d20.js"><link rel="prefetch" href="/ysblog/assets/js/20.07624a1c.js"><link rel="prefetch" href="/ysblog/assets/js/21.a4151fba.js"><link rel="prefetch" href="/ysblog/assets/js/22.141540b5.js"><link rel="prefetch" href="/ysblog/assets/js/23.91fde9ee.js"><link rel="prefetch" href="/ysblog/assets/js/24.cca104ac.js"><link rel="prefetch" href="/ysblog/assets/js/25.5cc0b6e3.js"><link rel="prefetch" href="/ysblog/assets/js/26.5835c007.js"><link rel="prefetch" href="/ysblog/assets/js/27.132ee99d.js"><link rel="prefetch" href="/ysblog/assets/js/28.dae014a1.js"><link rel="prefetch" href="/ysblog/assets/js/29.a922ac25.js"><link rel="prefetch" href="/ysblog/assets/js/3.859ec158.js"><link rel="prefetch" href="/ysblog/assets/js/30.215eea15.js"><link rel="prefetch" href="/ysblog/assets/js/31.a6a3ecad.js"><link rel="prefetch" href="/ysblog/assets/js/32.2f04c66d.js"><link rel="prefetch" href="/ysblog/assets/js/33.2e16f460.js"><link rel="prefetch" href="/ysblog/assets/js/34.6f7d019b.js"><link rel="prefetch" href="/ysblog/assets/js/35.72665780.js"><link rel="prefetch" href="/ysblog/assets/js/36.f8c9d77b.js"><link rel="prefetch" href="/ysblog/assets/js/37.aa3efe17.js"><link rel="prefetch" href="/ysblog/assets/js/38.6cb4e1db.js"><link rel="prefetch" href="/ysblog/assets/js/39.43e17a0d.js"><link rel="prefetch" href="/ysblog/assets/js/4.ee24ae0f.js"><link rel="prefetch" href="/ysblog/assets/js/5.bd54095f.js"><link rel="prefetch" href="/ysblog/assets/js/6.dcc1de99.js"><link rel="prefetch" href="/ysblog/assets/js/7.316c9739.js"><link rel="prefetch" href="/ysblog/assets/js/9.de91e189.js">
+    <link rel="stylesheet" href="/ysblog/assets/css/0.styles.e661b340.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/ysblog/" class="home-link router-link-active"><!----> <span class="site-name">大木_笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/ysblog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端" class="mobile-dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/web/JS/blog1.html" class="nav-link">
+  JS
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/browser/blog1.html" class="nav-link">
+  浏览器
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/jQuery/blog1.html" class="nav-link">
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/underscore/blog1.html" class="nav-link">
+  underscore
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/webpack/blog1.html" class="nav-link">
+  webpack
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/vue/blog1.html" class="nav-link">
+  vue
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据结构" class="dropdown-title"><span class="title">数据结构</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据结构" class="mobile-dropdown-title"><span class="title">数据结构</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/DataStructure/queue/blog1.html" class="nav-link">
+  队列
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/other/regex/blog1.html" class="nav-link">
+  正则表达式
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/ysblog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端" class="mobile-dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/web/JS/blog1.html" class="nav-link">
+  JS
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/browser/blog1.html" class="nav-link">
+  浏览器
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/jQuery/blog1.html" class="nav-link">
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/underscore/blog1.html" class="nav-link">
+  underscore
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/webpack/blog1.html" class="nav-link">
+  webpack
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/vue/blog1.html" class="nav-link">
+  vue
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据结构" class="dropdown-title"><span class="title">数据结构</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据结构" class="mobile-dropdown-title"><span class="title">数据结构</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/DataStructure/queue/blog1.html" class="nav-link">
+  队列
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/other/regex/blog1.html" class="nav-link">
+  正则表达式
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>jQuery</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/ysblog/web/jQuery/blog1.html" class="sidebar-link">jQuery $ 原理及extend函数源码实现</a></li><li><a href="/ysblog/web/jQuery/blog2.html" class="sidebar-link">jQuery Callbacks源码分析</a></li><li><a href="/ysblog/web/jQuery/blog3.html" class="sidebar-link">jQuery 延时对象Deferred简单实现</a></li><li><a href="/ysblog/web/jQuery/blog4.html" aria-current="page" class="active sidebar-link">jQuery 缓存Data对象及队列queue</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ysblog/web/jQuery/blog4.html#data-方法" class="sidebar-link">data()方法</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ysblog/web/jQuery/blog4.html#data对象" class="sidebar-link">Data对象</a></li><li class="sidebar-sub-header"><a href="/ysblog/web/jQuery/blog4.html#data-方法的实现" class="sidebar-link">data()方法的实现</a></li></ul></li><li class="sidebar-sub-header"><a href="/ysblog/web/jQuery/blog4.html#队列queue" class="sidebar-link">队列queue</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ysblog/web/jQuery/blog4.html#实现" class="sidebar-link">实现</a></li></ul></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="jquery-缓存data对象及队列queue"><a href="#jquery-缓存data对象及队列queue" class="header-anchor">#</a> jQuery 缓存Data对象及队列queue</h1> <h2 id="data-方法"><a href="#data-方法" class="header-anchor">#</a> data()方法</h2> <p>jQuery.data() 方法向被选元素储存数据，或者从被选元素获取数据</p> <div class="language-javaScript extra-class"><pre class="language-javascript"><code><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">&quot;.box&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">&quot;key&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;hello&quot;</span><span class="token punctuation">)</span>	<span class="token comment">//储存数据</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">&quot;.box&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token string">&quot;key&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>	<span class="token comment">//获取数据，打印hello</span>
+</code></pre></div><p>data()方法在dom元素存储数据，并不是直接将数据绑定到dom元素上，dom元素常驻于内存当中，不会被销毁（除非关页面），如果在dom元素上绑定大量数据，势必会导致内存泄漏。那么jQuer如何缓存数据呢？
+<img src="/ysblog/assets/img/16c4c6106bda8ed2.c9d3bc99.png" alt=""></p> <ol><li>dom元素生成一个uuid属性，值就是ID，dom[uuid] = ID</li> <li>UUID = expando，expando是jQuery内部生成随机数方法，expando=&quot;jQuery&quot; + (Math.random()).replace(/\D/g, &quot;&quot;)</li> <li>jQuery 内部 Data 对象会创建一个 Cache 对象用于储存数据，key 对应 ID，value 对应数据， Cache = { ID : { //数据 }}</li></ol> <p>通过这种方式，实现数据跟 dom 的绑定，数据是储存于 Cache，而不是 dom 元素上</p> <h3 id="data对象"><a href="#data对象" class="header-anchor">#</a> Data对象</h3> <p>jQuer内部的Data对象，主要有三个方法，get、key、以及set，核心方法是key方法，key的作用主要是根据 dom[UUID] 返回 Cache 中的 ID，如果dom没有UUID属性，则在dom上添加UUID属性，并将Cache添加ID属性，值为空</p> <div class="language-javaScript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">Data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>expando <span class="token operator">=</span> jQuery<span class="token punctuation">.</span>expando <span class="token operator">+</span> Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>cache <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+Data<span class="token punctuation">.</span>uid <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token comment">//创建缓存及返回</span>
+<span class="token class-name">Data</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token comment">//key方法，获取ID</span>
+    <span class="token comment">//同时在this.cache里面建立一个 uid: {}</span>
+    <span class="token function">key</span><span class="token punctuation">(</span><span class="token parameter">elem</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">var</span> descriptor <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+            unlock <span class="token operator">=</span> elem<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>expando<span class="token punctuation">]</span>
+        
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>unlock<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            unlock <span class="token operator">=</span> Data<span class="token punctuation">.</span>uid<span class="token operator">++</span>
+            descriptor<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>expando<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+                value<span class="token operator">:</span> unlock
+            <span class="token punctuation">}</span>
+            <span class="token comment">/*
+            Dom扩展属性，相当于
+                elem[this.expando] = unlock
+            */</span>
+            Object<span class="token punctuation">.</span><span class="token function">defineProperties</span><span class="token punctuation">(</span>elem<span class="token punctuation">,</span> descriptor<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>cache<span class="token punctuation">[</span>unlock<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>cache<span class="token punctuation">[</span>unlock<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">return</span> unlock
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token function">get</span><span class="token punctuation">(</span>elem<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment">//找到或者创建缓存</span>
+        <span class="token keyword">var</span> cache <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>cache<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">key</span><span class="token punctuation">(</span>elem<span class="token punctuation">)</span><span class="token punctuation">]</span>
+        <span class="token comment">//key 有值直接在缓存中读取</span>
+        <span class="token keyword">return</span> key <span class="token operator">===</span> <span class="token keyword">undefined</span> <span class="token operator">?</span> cache <span class="token operator">:</span> cache<span class="token punctuation">[</span>key<span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token function">set</span><span class="token punctuation">(</span>owner<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">var</span> unlock <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">key</span><span class="token punctuation">(</span>owner<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            cache <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>cache<span class="token punctuation">[</span>unlock<span class="token punctuation">]</span><span class="token punctuation">,</span>
+            prop
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> key <span class="token operator">===</span> <span class="token string">'string'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            cache<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> value
+        <span class="token punctuation">}</span>
+        <span class="token comment">//如果key是一个对象</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>jQuery<span class="token punctuation">.</span><span class="token function">isPlainObject</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span> prop <span class="token keyword">in</span> key <span class="token punctuation">)</span><span class="token punctuation">{</span>
+                cache<span class="token punctuation">[</span>prop<span class="token punctuation">]</span> <span class="token operator">=</span> key<span class="token punctuation">[</span>prop<span class="token punctuation">]</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="data-方法的实现"><a href="#data-方法的实现" class="header-anchor">#</a> data()方法的实现</h3> <div class="language-javaScript extra-class"><pre class="language-javascript"><code><span class="token comment">//缓存内部数据</span>
+<span class="token keyword">var</span> data_user <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//创建Data对象</span>
+<span class="token function">data</span><span class="token punctuation">(</span><span class="token parameter">key<span class="token punctuation">,</span> value</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> _this <span class="token operator">=</span> <span class="token keyword">this</span>    <span class="token comment">//this代表$(&quot;.box&quot;)</span>
+    <span class="token keyword">return</span> <span class="token function">access</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">key<span class="token punctuation">,</span> value</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>value <span class="token operator">===</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span><span class="token punctuation">{</span>    <span class="token comment">//获取数据</span>
+            <span class="token keyword">var</span> data <span class="token operator">=</span> data_user<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> key<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>data<span class="token operator">!==</span><span class="token keyword">undefined</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> data
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        _this<span class="token punctuation">.</span><span class="token function">each</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            data_user<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span> <span class="token comment">//在data_user上储存数据并在获取的dom上添加属性UUID</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token function-variable function">access</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">elems<span class="token punctuation">,</span> func<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> len <span class="token operator">=</span> elems<span class="token punctuation">.</span>length
+    <span class="token keyword">var</span> testting <span class="token operator">=</span> key <span class="token operator">===</span> <span class="token keyword">null</span>
+    <span class="token keyword">var</span> cache
+
+    <span class="token keyword">if</span><span class="token punctuation">(</span>value <span class="token operator">!==</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment">//说明value有值，则做set操作</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>testting<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            cache <span class="token operator">=</span> func
+            <span class="token function-variable function">func</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">key<span class="token punctuation">,</span> value</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token function">cache</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token function">func</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>elems<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token function">func</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>elems<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+</code></pre></div><h2 id="队列queue"><a href="#队列queue" class="header-anchor">#</a> 队列queue</h2> <p>queue() 方法是基于data()实现的，它是显示或操作在匹配元素上执行的函数队列，通常与 dequeue() 方法一起使用</p> <div class="language-javaScript extra-class"><pre class="language-javascript"><code><span class="token keyword">var</span> box <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'box'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">function</span> <span class="token function">fn1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'这是方法1'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">fn2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'这是方法2'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//给dom元素box上存储名为first的函数队列</span>
+jQuery<span class="token punctuation">.</span><span class="token function">queue</span><span class="token punctuation">(</span>box<span class="token punctuation">,</span> <span class="token string">&quot;first&quot;</span><span class="token punctuation">,</span> fn1<span class="token punctuation">)</span> <span class="token comment">//将fn1添加到first函数队列</span>
+jQuery<span class="token punctuation">.</span><span class="token function">queue</span><span class="token punctuation">(</span>box<span class="token punctuation">,</span> <span class="token string">&quot;first&quot;</span><span class="token punctuation">,</span> fn2<span class="token punctuation">)</span> <span class="token comment">//将fn2添加到first函数队列</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>jQuery<span class="token punctuation">.</span><span class="token function">queue</span><span class="token punctuation">(</span>box<span class="token punctuation">,</span> <span class="token string">&quot;first&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">//打印包含fn1及fn2的函数数组：[fn,fn]</span>
+
+<span class="token comment">//执行队列</span>
+jQuery<span class="token punctuation">.</span><span class="token function">dequeue</span><span class="token punctuation">(</span>box<span class="token punctuation">,</span> <span class="token string">&quot;first&quot;</span><span class="token punctuation">)</span>    <span class="token comment">//打印：这是方法1</span>
+jQuery<span class="token punctuation">.</span><span class="token function">dequeue</span><span class="token punctuation">(</span>box<span class="token punctuation">,</span> <span class="token string">&quot;first&quot;</span><span class="token punctuation">)</span>    <span class="token comment">//打印：这是方法2</span>
+</code></pre></div><h3 id="实现"><a href="#实现" class="header-anchor">#</a> 实现</h3> <div class="language-javaScript extra-class"><pre class="language-javascript"><code><span class="token comment">//缓存内部数据</span>
+<span class="token keyword">var</span> data_user <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//创建Data对象</span>
+
+<span class="token function">queue</span><span class="token punctuation">(</span><span class="token parameter">elem<span class="token punctuation">,</span> type<span class="token punctuation">,</span> data</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> queue
+    <span class="token keyword">if</span><span class="token punctuation">(</span>elem<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        type <span class="token operator">=</span> type <span class="token operator">+</span> <span class="token string">&quot;queue&quot;</span>    <span class="token comment">//firstqueue</span>
+        queue <span class="token operator">=</span> data_user<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>elem<span class="token punctuation">,</span> type<span class="token punctuation">)</span>   <span class="token comment">//获取Cache里的缓存数据</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>queue<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token comment">//由于queue储存的是函数队列，jQuery.markArray()方法是将传入的数据变成数组[data]</span>
+                data_user<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>elem<span class="token punctuation">,</span> type<span class="token punctuation">,</span> jQuery<span class="token punctuation">.</span><span class="token function">markArray</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                queue<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> queue
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token function">dequeue</span><span class="token punctuation">(</span><span class="token parameter">elem<span class="token punctuation">,</span> type</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    type <span class="token operator">=</span> type <span class="token operator">||</span> <span class="token string">&quot;fx&quot;</span>
+    <span class="token keyword">var</span> queue <span class="token operator">=</span> jQuery<span class="token punctuation">.</span><span class="token function">queue</span><span class="token punctuation">(</span>elem<span class="token punctuation">,</span> type<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">next</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            jQuery<span class="token punctuation">.</span><span class="token function">dequeue</span><span class="token punctuation">(</span>elem<span class="token punctuation">,</span> type<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        fn <span class="token operator">=</span> queue<span class="token punctuation">.</span><span class="token function">shift</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token function">fn</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>elem<span class="token punctuation">,</span> next<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="next"><a href="#next" class="header-anchor">#</a> next()</h4> <p>在 dequeue() 方法中有一个 next() 方法，其本身就是 dequeue() 方法。它会在函数中传入 next 参数，用于继续执行函数队列，相当于再次执行 jQuery.dequeue() 方法</p> <div class="language-javaScript extra-class"><pre class="language-javascript"><code><span class="token keyword">var</span> box <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'box'</span><span class="token punctuation">)</span>
+<span class="token keyword">function</span> <span class="token function">fn1</span><span class="token punctuation">(</span><span class="token parameter">next</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'这是方法1'</span><span class="token punctuation">)</span>
+	<span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">//继续执行fn2方法，打印：这是方法2</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">fn2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'这是方法2'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+jQuery<span class="token punctuation">.</span><span class="token function">queue</span><span class="token punctuation">(</span>box<span class="token punctuation">,</span> <span class="token string">&quot;first&quot;</span><span class="token punctuation">,</span> fn1<span class="token punctuation">)</span>
+jQuery<span class="token punctuation">.</span><span class="token function">queue</span><span class="token punctuation">(</span>box<span class="token punctuation">,</span> <span class="token string">&quot;first&quot;</span><span class="token punctuation">,</span> fn2<span class="token punctuation">)</span>
+
+<span class="token comment">//执行队列</span>
+jQuery<span class="token punctuation">.</span><span class="token function">dequeue</span><span class="token punctuation">(</span>box<span class="token punctuation">,</span> <span class="token string">&quot;first&quot;</span><span class="token punctuation">)</span>    <span class="token comment">//打印：这是方法1</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/ysblog/web/jQuery/blog3.html" class="prev">
+        jQuery 延时对象Deferred简单实现
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/ysblog/assets/js/app.05f40ecb.js" defer></script><script src="/ysblog/assets/js/2.101f09ec.js" defer></script><script src="/ysblog/assets/js/8.87405e82.js" defer></script>
+  </body>
+</html>

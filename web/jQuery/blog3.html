@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>jQuery 延时对象Deferred简单实现 | 大木_笔记</title>
+    <meta name="generator" content="VuePress 1.5.4">
+    
+    <meta name="description" content="记录工作和学习过程中的笔记">
+    <link rel="preload" href="/ysblog/assets/css/0.styles.e661b340.css" as="style"><link rel="preload" href="/ysblog/assets/js/app.05f40ecb.js" as="script"><link rel="preload" href="/ysblog/assets/js/2.101f09ec.js" as="script"><link rel="preload" href="/ysblog/assets/js/29.a922ac25.js" as="script"><link rel="prefetch" href="/ysblog/assets/js/10.aba1ce7e.js"><link rel="prefetch" href="/ysblog/assets/js/11.232cd946.js"><link rel="prefetch" href="/ysblog/assets/js/12.22125e24.js"><link rel="prefetch" href="/ysblog/assets/js/13.641bf3cf.js"><link rel="prefetch" href="/ysblog/assets/js/14.24ccc943.js"><link rel="prefetch" href="/ysblog/assets/js/15.56161087.js"><link rel="prefetch" href="/ysblog/assets/js/16.205bd373.js"><link rel="prefetch" href="/ysblog/assets/js/17.bd633a29.js"><link rel="prefetch" href="/ysblog/assets/js/18.33d43e7e.js"><link rel="prefetch" href="/ysblog/assets/js/19.a2911d20.js"><link rel="prefetch" href="/ysblog/assets/js/20.07624a1c.js"><link rel="prefetch" href="/ysblog/assets/js/21.a4151fba.js"><link rel="prefetch" href="/ysblog/assets/js/22.141540b5.js"><link rel="prefetch" href="/ysblog/assets/js/23.91fde9ee.js"><link rel="prefetch" href="/ysblog/assets/js/24.cca104ac.js"><link rel="prefetch" href="/ysblog/assets/js/25.5cc0b6e3.js"><link rel="prefetch" href="/ysblog/assets/js/26.5835c007.js"><link rel="prefetch" href="/ysblog/assets/js/27.132ee99d.js"><link rel="prefetch" href="/ysblog/assets/js/28.dae014a1.js"><link rel="prefetch" href="/ysblog/assets/js/3.859ec158.js"><link rel="prefetch" href="/ysblog/assets/js/30.215eea15.js"><link rel="prefetch" href="/ysblog/assets/js/31.a6a3ecad.js"><link rel="prefetch" href="/ysblog/assets/js/32.2f04c66d.js"><link rel="prefetch" href="/ysblog/assets/js/33.2e16f460.js"><link rel="prefetch" href="/ysblog/assets/js/34.6f7d019b.js"><link rel="prefetch" href="/ysblog/assets/js/35.72665780.js"><link rel="prefetch" href="/ysblog/assets/js/36.f8c9d77b.js"><link rel="prefetch" href="/ysblog/assets/js/37.aa3efe17.js"><link rel="prefetch" href="/ysblog/assets/js/38.6cb4e1db.js"><link rel="prefetch" href="/ysblog/assets/js/39.43e17a0d.js"><link rel="prefetch" href="/ysblog/assets/js/4.ee24ae0f.js"><link rel="prefetch" href="/ysblog/assets/js/5.bd54095f.js"><link rel="prefetch" href="/ysblog/assets/js/6.dcc1de99.js"><link rel="prefetch" href="/ysblog/assets/js/7.316c9739.js"><link rel="prefetch" href="/ysblog/assets/js/8.87405e82.js"><link rel="prefetch" href="/ysblog/assets/js/9.de91e189.js">
+    <link rel="stylesheet" href="/ysblog/assets/css/0.styles.e661b340.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/ysblog/" class="home-link router-link-active"><!----> <span class="site-name">大木_笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/ysblog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端" class="mobile-dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/web/JS/blog1.html" class="nav-link">
+  JS
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/browser/blog1.html" class="nav-link">
+  浏览器
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/jQuery/blog1.html" class="nav-link">
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/underscore/blog1.html" class="nav-link">
+  underscore
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/webpack/blog1.html" class="nav-link">
+  webpack
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/vue/blog1.html" class="nav-link">
+  vue
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据结构" class="dropdown-title"><span class="title">数据结构</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据结构" class="mobile-dropdown-title"><span class="title">数据结构</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/DataStructure/queue/blog1.html" class="nav-link">
+  队列
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/other/regex/blog1.html" class="nav-link">
+  正则表达式
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/ysblog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端" class="mobile-dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/web/JS/blog1.html" class="nav-link">
+  JS
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/browser/blog1.html" class="nav-link">
+  浏览器
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/jQuery/blog1.html" class="nav-link">
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/underscore/blog1.html" class="nav-link">
+  underscore
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/webpack/blog1.html" class="nav-link">
+  webpack
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/vue/blog1.html" class="nav-link">
+  vue
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据结构" class="dropdown-title"><span class="title">数据结构</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据结构" class="mobile-dropdown-title"><span class="title">数据结构</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/DataStructure/queue/blog1.html" class="nav-link">
+  队列
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/other/regex/blog1.html" class="nav-link">
+  正则表达式
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>jQuery</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/ysblog/web/jQuery/blog1.html" class="sidebar-link">jQuery $ 原理及extend函数源码实现</a></li><li><a href="/ysblog/web/jQuery/blog2.html" class="sidebar-link">jQuery Callbacks源码分析</a></li><li><a href="/ysblog/web/jQuery/blog3.html" aria-current="page" class="active sidebar-link">jQuery 延时对象Deferred简单实现</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ysblog/web/jQuery/blog3.html#介绍" class="sidebar-link">介绍</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ysblog/web/jQuery/blog3.html#什么是deferred对象" class="sidebar-link">什么是deferred对象</a></li></ul></li><li class="sidebar-sub-header"><a href="/ysblog/web/jQuery/blog3.html#实现" class="sidebar-link">实现</a></li></ul></li><li><a href="/ysblog/web/jQuery/blog4.html" class="sidebar-link">jQuery 缓存Data对象及队列queue</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="jquery-延时对象deferred简单实现"><a href="#jquery-延时对象deferred简单实现" class="header-anchor">#</a> jQuery 延时对象Deferred简单实现</h1> <h2 id="介绍"><a href="#介绍" class="header-anchor">#</a> 介绍</h2> <h3 id="什么是deferred对象"><a href="#什么是deferred对象" class="header-anchor">#</a> 什么是deferred对象</h3> <p>deferred对象是一个延时对象，函数延迟到某个点才开始执行，改变执行状态的方法有两个（成功：resolve和失败：reject），分别对应两种执行回调（成功回调函数：done和失败回调函数fail）</p> <div class="language-javascirpt extra-class"><pre class="language-text"><code>var wait = function() {
+        var der = $.Deferred(); //创建deferred对象
+        var test = function(){
+            console.log(&quot;111&quot;);
+            der.resolve(&quot;222&quot;) 
+        }
+        test()
+        return der
+    }
+    $.when(wait())  //$.when()参数里面必须是deferred对象
+        .done(function(data){ 
+            console.log(&quot;执行成功&quot;,data)    
+        })
+        .fail(function(){
+            console.log(&quot;执行失败&quot;)
+        })
+        
+//打印结果:
+//111
+//222 ys
+</code></pre></div><h2 id="实现"><a href="#实现" class="header-anchor">#</a> 实现</h2> <p>Defferred的实现跟jQuery内部Callbacks函数密不可分 <a href="https://juejin.im/post/5d20401ff265da1bb67a39b1" target="_blank" rel="noopener noreferrer">Callbacks源码分析<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>，要用到其内部的fireWith函数，该函数主要用于控制参数传递以及执行list中的所有回调函数。</p> <div class="language-javascirpt extra-class"><pre class="language-text"><code>Deferred: function(func){
+    //tuples数组储存延迟对象的不同状态信息描述
+    var tuples = [
+        [&quot;resolve&quot;, &quot;done&quot;, jQuery.Callbacks(&quot;once memory&quot;)],
+        [&quot;reject&quot;, &quot;fail&quot;, jQuery.Callbacks(&quot;once memory&quot;)]
+    ],
+    promise = {
+        then(){
+        },
+        promise(obj){
+            return obj != null ? jQuery.extend(obj, promise) : promise
+        }
+    },
+    
+    //延迟对象
+    deferred = {}
+
+    tuples.forEach((tuple, i)=&gt;{
+        //创建Callbacks队列函数，list=jQuery.Callbacks(&quot;once memory&quot;)
+        var list = tuple[2]
+        
+        //扩展promise对象，promise[ done | fail ] = list.add
+        //调用done,fail,progress会给队列里面添加处理函数
+        promise[tuple[1]] = list.add
+
+        //给deferred扩展resolve,reject
+        // deferred.resolve = function() { deferred.resolveWith(...) }
+        // deferred.reject = function() { deferred.rejectWith(...) }
+        deferred[tuple[0]] = function(){
+            //给fireWith传递参数，指定this
+            deferred[tuple[0] + &quot;With&quot;](this === deferred ? promise : this , arguments)
+            return this
+        }
+
+        deferred[tuple[0] + &quot;With&quot;] = list.fireWith
+    })
+    
+    //扩展deferred属性，相当于合并promise跟deferred,
+    //基本数据类型传参是按值传递，不会改变原对象。引用数据类型按对象传递、按对象共享传递，该方法会改变实参deferred
+    // deferred对象上面包含 resolve | reject | promise | done | fail | rejectWith | resolveWith 这些方法
+    promise.promise(deferred)
+
+    return deferred
+}
+//接受延迟对象的回调函数，返回的是promise对象
+when(deferred){
+    return deferred.promise()
+}
+</code></pre></div><p>以上基本能实现deferred对象功能，包含resolve()及reject两个处理函数</p> <p>deferred对象包含的方法包括 resolve | reject | promise | done | fail | rejectWith | resolveWith</p> <p>when()函数返回promise对象，其包括的方法有 done | fail | promise</p> <p>当执行deferred对象的resolve()方法，相当于执行了deferred.resolveWith()，也就是Callbacks里面的fireWith函数，执行Callbacks队列函数的所有回调函数。deferred.resolve() -&gt; deferred.resolveWith() -&gt; list.fireWith() -&gt; list.fire()</p> <p>回调函数添加进入Callbacks队列函数是通过 promis.done(回调函数) 添加，promise[tuple[1]] = list.add, 由于创建Callbacks传入了memory参数，jQuery.Callbacks(&quot;once memory&quot;)，它会在添加函数的同时执行Callbacks队列函数</p> <div class="language-javascirpt extra-class"><pre class="language-text"><code>var wait = function() {
+    var der = $.Deferred(); //创建deferred对象
+    var test = function(){
+        console.log(&quot;111&quot;);
+        der.resolve(&quot;222&quot;) //执行Callbacks队列函数添加回调函数
+    }
+    test()
+    return der
+}
+$.when(wait())  //$.when()参数里面必须是deferred对象，返回的是promise对象
+    .done(function(data){   //向Callbacks队列函数添加回调函数,并执行队列函数
+        console.log(&quot;执行成功&quot;,data)
+    })
+    .fail(function(){
+        console.log(&quot;执行失败&quot;)
+    })
+    
+//打印结果:
+//111
+//222 ys
+</code></pre></div><p>以上便基本实现了Deferred对象，当然Deferred本身还不仅仅是这些，Deferrred最复杂深奥的代码在promise.then里面，本文没有分析，有空再深入</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/ysblog/web/jQuery/blog2.html" class="prev">
+        jQuery Callbacks源码分析
+      </a></span> <span class="next"><a href="/ysblog/web/jQuery/blog4.html">
+        jQuery 缓存Data对象及队列queue
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/ysblog/assets/js/app.05f40ecb.js" defer></script><script src="/ysblog/assets/js/2.101f09ec.js" defer></script><script src="/ysblog/assets/js/29.a922ac25.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>构造函数 | 大木_笔记</title>
+    <meta name="generator" content="VuePress 1.5.4">
+    
+    <meta name="description" content="记录工作和学习过程中的笔记">
+    <link rel="preload" href="/ysblog/assets/css/0.styles.e661b340.css" as="style"><link rel="preload" href="/ysblog/assets/js/app.05f40ecb.js" as="script"><link rel="preload" href="/ysblog/assets/js/2.101f09ec.js" as="script"><link rel="preload" href="/ysblog/assets/js/20.07624a1c.js" as="script"><link rel="prefetch" href="/ysblog/assets/js/10.aba1ce7e.js"><link rel="prefetch" href="/ysblog/assets/js/11.232cd946.js"><link rel="prefetch" href="/ysblog/assets/js/12.22125e24.js"><link rel="prefetch" href="/ysblog/assets/js/13.641bf3cf.js"><link rel="prefetch" href="/ysblog/assets/js/14.24ccc943.js"><link rel="prefetch" href="/ysblog/assets/js/15.56161087.js"><link rel="prefetch" href="/ysblog/assets/js/16.205bd373.js"><link rel="prefetch" href="/ysblog/assets/js/17.bd633a29.js"><link rel="prefetch" href="/ysblog/assets/js/18.33d43e7e.js"><link rel="prefetch" href="/ysblog/assets/js/19.a2911d20.js"><link rel="prefetch" href="/ysblog/assets/js/21.a4151fba.js"><link rel="prefetch" href="/ysblog/assets/js/22.141540b5.js"><link rel="prefetch" href="/ysblog/assets/js/23.91fde9ee.js"><link rel="prefetch" href="/ysblog/assets/js/24.cca104ac.js"><link rel="prefetch" href="/ysblog/assets/js/25.5cc0b6e3.js"><link rel="prefetch" href="/ysblog/assets/js/26.5835c007.js"><link rel="prefetch" href="/ysblog/assets/js/27.132ee99d.js"><link rel="prefetch" href="/ysblog/assets/js/28.dae014a1.js"><link rel="prefetch" href="/ysblog/assets/js/29.a922ac25.js"><link rel="prefetch" href="/ysblog/assets/js/3.859ec158.js"><link rel="prefetch" href="/ysblog/assets/js/30.215eea15.js"><link rel="prefetch" href="/ysblog/assets/js/31.a6a3ecad.js"><link rel="prefetch" href="/ysblog/assets/js/32.2f04c66d.js"><link rel="prefetch" href="/ysblog/assets/js/33.2e16f460.js"><link rel="prefetch" href="/ysblog/assets/js/34.6f7d019b.js"><link rel="prefetch" href="/ysblog/assets/js/35.72665780.js"><link rel="prefetch" href="/ysblog/assets/js/36.f8c9d77b.js"><link rel="prefetch" href="/ysblog/assets/js/37.aa3efe17.js"><link rel="prefetch" href="/ysblog/assets/js/38.6cb4e1db.js"><link rel="prefetch" href="/ysblog/assets/js/39.43e17a0d.js"><link rel="prefetch" href="/ysblog/assets/js/4.ee24ae0f.js"><link rel="prefetch" href="/ysblog/assets/js/5.bd54095f.js"><link rel="prefetch" href="/ysblog/assets/js/6.dcc1de99.js"><link rel="prefetch" href="/ysblog/assets/js/7.316c9739.js"><link rel="prefetch" href="/ysblog/assets/js/8.87405e82.js"><link rel="prefetch" href="/ysblog/assets/js/9.de91e189.js">
+    <link rel="stylesheet" href="/ysblog/assets/css/0.styles.e661b340.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/ysblog/" class="home-link router-link-active"><!----> <span class="site-name">大木_笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/ysblog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端" class="mobile-dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/web/JS/blog1.html" class="nav-link">
+  JS
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/browser/blog1.html" class="nav-link">
+  浏览器
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/jQuery/blog1.html" class="nav-link">
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/underscore/blog1.html" class="nav-link">
+  underscore
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/webpack/blog1.html" class="nav-link">
+  webpack
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/vue/blog1.html" class="nav-link">
+  vue
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据结构" class="dropdown-title"><span class="title">数据结构</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据结构" class="mobile-dropdown-title"><span class="title">数据结构</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/DataStructure/queue/blog1.html" class="nav-link">
+  队列
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/other/regex/blog1.html" class="nav-link">
+  正则表达式
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/ysblog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端" class="mobile-dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/web/JS/blog1.html" class="nav-link">
+  JS
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/browser/blog1.html" class="nav-link">
+  浏览器
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/jQuery/blog1.html" class="nav-link">
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/underscore/blog1.html" class="nav-link">
+  underscore
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/webpack/blog1.html" class="nav-link">
+  webpack
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/vue/blog1.html" class="nav-link">
+  vue
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据结构" class="dropdown-title"><span class="title">数据结构</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据结构" class="mobile-dropdown-title"><span class="title">数据结构</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/DataStructure/queue/blog1.html" class="nav-link">
+  队列
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/other/regex/blog1.html" class="nav-link">
+  正则表达式
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>JS</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/ysblog/web/JS/blog8.html" class="sidebar-link">函数</a></li><li><a href="/ysblog/web/JS/blog7.html" class="sidebar-link">变量及函数提升</a></li><li><a href="/ysblog/web/JS/blog6.html" class="sidebar-link">作用域与命名空间</a></li><li><a href="/ysblog/web/JS/blog1.html" class="sidebar-link">类型</a></li><li><a href="/ysblog/web/JS/blog9.html" class="sidebar-link">原型继承</a></li><li><a href="/ysblog/web/JS/blog5.html" aria-current="page" class="active sidebar-link">构造函数</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ysblog/web/JS/blog5.html#工厂模式" class="sidebar-link">工厂模式</a></li><li class="sidebar-sub-header"><a href="/ysblog/web/JS/blog5.html#通过工厂模式创建新对象" class="sidebar-link">通过工厂模式创建新对象</a></li><li class="sidebar-sub-header"><a href="/ysblog/web/JS/blog5.html#总结" class="sidebar-link">总结</a></li></ul></li><li><a href="/ysblog/web/JS/blog2.html" class="sidebar-link">this 的工作原理</a></li><li><a href="/ysblog/web/JS/blog3.html" class="sidebar-link">闭包和引用</a></li><li><a href="/ysblog/web/JS/blog4.html" class="sidebar-link">arguments 对象</a></li><li><a href="/ysblog/web/JS/blog10.html" class="sidebar-link">Promise</a></li><li><a href="/ysblog/web/JS/blog11.html" class="sidebar-link">偏函数</a></li><li><a href="/ysblog/web/JS/blog12.html" class="sidebar-link">require 和 import</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="构造函数"><a href="#构造函数" class="header-anchor">#</a> 构造函数</h1> <p>JavaScript 中的构造函数和其它语言中的构造函数是不同的。 通过 new 关键字方式调用的函数都被认为是构造函数。</p> <p>在构造函数内部 - 也就是被调用的函数内 - this 指向新创建的对象 Object。 这个新创建的对象的 prototype 被指向到构造函数的 prototype。</p> <p>如果被调用的函数没有显式的 return 表达式，则隐式的会返回 this 对象 - 也就是新创建的对象。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">Foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>bla <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">Foo</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">test</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>bla<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> test <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+test<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">//1</span>
+</code></pre></div><p>上面代码把 Foo 作为构造函数调用，并设置新创建对象的 __proto__ 为 Foo.prototype。</p> <p>显式的 return 表达式将会影响返回结果，但仅限于返回的是一个对象。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">Bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">new</span> <span class="token class-name">Bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 返回新创建的对象</span>
+
+<span class="token keyword">function</span> <span class="token function">Test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        foo<span class="token operator">:</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">new</span> <span class="token class-name">Test</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 返回的对象 {foo: 1};</span>
+</code></pre></div><p>new Bar() 返回的是新创建的对象，而不是数字的字面值 2。 因此 new Bar().constructor === Bar，但是如果返回的是数字对象，结果就不同了，如下所示</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">Test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        foo<span class="token operator">:</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Test</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>value <span class="token operator">===</span> <span class="token keyword">undefined</span>
+<span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Test</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>foo <span class="token operator">===</span> <span class="token number">1</span>
+</code></pre></div><p>如果 new 被遗漏了，则函数不会返回新创建的对象。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">Foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>bla <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">// 获取设置全局参数</span>
+<span class="token punctuation">}</span>
+<span class="token function">Foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// undefined</span>
+</code></pre></div><p>虽然上例在有些情况下也能正常运行，但是由于 JavaScript 中 this 的工作原理， 这里的 this 指向全局对象。</p> <h2 id="工厂模式"><a href="#工厂模式" class="header-anchor">#</a> 工厂模式</h2> <p>为了不使用 new 关键字，构造函数必须显式的返回一个值。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">Bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> value <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        <span class="token function-variable function">method</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> value<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token class-name">Bar</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">foo</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">new</span> <span class="token class-name">Bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token function">Bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>上面两种对 Bar 函数的调用返回的值完全相同，一个新创建的拥有 method 属性的对象被返回， 其实这里创建了一个闭包。</p> <p>还需要注意， new Bar() 并不会改变返回对象的原型（也就是返回对象的原型不会指向 Bar.prototype）。 因为构造函数的原型会被指向到刚刚创建的新对象，而这里的 Bar 没有把这个新对象返回（而是返回了一个包含 method 属性的自定义对象）。</p> <p>在上面的例子中，使用或者不使用 new 关键字没有功能性的区别。</p> <p>上面两种方式创建的对象不能访问 Bar 原型链上的属性，如下所示：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">Bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> value <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        <span class="token function-variable function">method</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> value<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token class-name">Bar</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">foo</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> bar1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">typeof</span><span class="token punctuation">(</span>bar1<span class="token punctuation">.</span>method<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// &quot;function&quot;</span>
+<span class="token keyword">typeof</span><span class="token punctuation">(</span>bar1<span class="token punctuation">.</span>foo<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// &quot;undefined&quot;</span>
+
+<span class="token keyword">var</span> bar2 <span class="token operator">=</span> <span class="token function">Bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">typeof</span><span class="token punctuation">(</span>bar2<span class="token punctuation">.</span>method<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// &quot;function&quot;</span>
+<span class="token keyword">typeof</span><span class="token punctuation">(</span>bar2<span class="token punctuation">.</span>foo<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// &quot;undefined&quot;</span>
+</code></pre></div><h2 id="通过工厂模式创建新对象"><a href="#通过工厂模式创建新对象" class="header-anchor">#</a> 通过工厂模式创建新对象</h2> <p>我们常听到的一条忠告是不要使用 new 关键字来调用函数，因为如果忘记使用它就会导致错误。</p> <p>为了创建新对象，我们可以创建一个工厂方法，并且在方法内构造一个新对象。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">Foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    obj<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token string">'blub'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">var</span> <span class="token keyword">private</span> <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    obj<span class="token punctuation">.</span><span class="token function-variable function">someMethod</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>value <span class="token operator">=</span> value<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    obj<span class="token punctuation">.</span><span class="token function-variable function">getPrivate</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">private</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> obj<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">Foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">new</span> <span class="token class-name">Foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">//二者返回的是同一对象</span>
+</code></pre></div><p>虽然上面的方式比起 new 的调用方式不容易出错，并且可以充分利用私有变量带来的便利， 但是随之而来的是一些不好的地方。</p> <ol><li>会占用更多的内存，因为新创建的对象不能共享原型上的方法。</li> <li>为了实现继承，工厂方法需要从另外一个对象拷贝所有属性，或者把一个对象作为新创建对象的原型。</li> <li>放弃原型链仅仅是因为防止遗漏 new 带来的问题，这似乎和语言本身的思想相违背。</li></ol> <h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <p>虽然遗漏 new 关键字可能会导致问题，但这并不是放弃使用原型链的借口。 最终使用哪种方式取决于应用程序的需求，选择一种代码书写风格并坚持下去才是最重要的。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/ysblog/web/JS/blog9.html" class="prev">
+        原型继承
+      </a></span> <span class="next"><a href="/ysblog/web/JS/blog2.html">
+        this 的工作原理
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/ysblog/assets/js/app.05f40ecb.js" defer></script><script src="/ysblog/assets/js/2.101f09ec.js" defer></script><script src="/ysblog/assets/js/20.07624a1c.js" defer></script>
+  </body>
+</html>

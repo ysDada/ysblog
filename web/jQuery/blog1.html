@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>jQuery $ 原理及extend函数源码实现 | 大木_笔记</title>
+    <meta name="generator" content="VuePress 1.5.4">
+    
+    <meta name="description" content="记录工作和学习过程中的笔记">
+    <link rel="preload" href="/ysblog/assets/css/0.styles.e661b340.css" as="style"><link rel="preload" href="/ysblog/assets/js/app.05f40ecb.js" as="script"><link rel="preload" href="/ysblog/assets/js/2.101f09ec.js" as="script"><link rel="preload" href="/ysblog/assets/js/27.132ee99d.js" as="script"><link rel="prefetch" href="/ysblog/assets/js/10.aba1ce7e.js"><link rel="prefetch" href="/ysblog/assets/js/11.232cd946.js"><link rel="prefetch" href="/ysblog/assets/js/12.22125e24.js"><link rel="prefetch" href="/ysblog/assets/js/13.641bf3cf.js"><link rel="prefetch" href="/ysblog/assets/js/14.24ccc943.js"><link rel="prefetch" href="/ysblog/assets/js/15.56161087.js"><link rel="prefetch" href="/ysblog/assets/js/16.205bd373.js"><link rel="prefetch" href="/ysblog/assets/js/17.bd633a29.js"><link rel="prefetch" href="/ysblog/assets/js/18.33d43e7e.js"><link rel="prefetch" href="/ysblog/assets/js/19.a2911d20.js"><link rel="prefetch" href="/ysblog/assets/js/20.07624a1c.js"><link rel="prefetch" href="/ysblog/assets/js/21.a4151fba.js"><link rel="prefetch" href="/ysblog/assets/js/22.141540b5.js"><link rel="prefetch" href="/ysblog/assets/js/23.91fde9ee.js"><link rel="prefetch" href="/ysblog/assets/js/24.cca104ac.js"><link rel="prefetch" href="/ysblog/assets/js/25.5cc0b6e3.js"><link rel="prefetch" href="/ysblog/assets/js/26.5835c007.js"><link rel="prefetch" href="/ysblog/assets/js/28.dae014a1.js"><link rel="prefetch" href="/ysblog/assets/js/29.a922ac25.js"><link rel="prefetch" href="/ysblog/assets/js/3.859ec158.js"><link rel="prefetch" href="/ysblog/assets/js/30.215eea15.js"><link rel="prefetch" href="/ysblog/assets/js/31.a6a3ecad.js"><link rel="prefetch" href="/ysblog/assets/js/32.2f04c66d.js"><link rel="prefetch" href="/ysblog/assets/js/33.2e16f460.js"><link rel="prefetch" href="/ysblog/assets/js/34.6f7d019b.js"><link rel="prefetch" href="/ysblog/assets/js/35.72665780.js"><link rel="prefetch" href="/ysblog/assets/js/36.f8c9d77b.js"><link rel="prefetch" href="/ysblog/assets/js/37.aa3efe17.js"><link rel="prefetch" href="/ysblog/assets/js/38.6cb4e1db.js"><link rel="prefetch" href="/ysblog/assets/js/39.43e17a0d.js"><link rel="prefetch" href="/ysblog/assets/js/4.ee24ae0f.js"><link rel="prefetch" href="/ysblog/assets/js/5.bd54095f.js"><link rel="prefetch" href="/ysblog/assets/js/6.dcc1de99.js"><link rel="prefetch" href="/ysblog/assets/js/7.316c9739.js"><link rel="prefetch" href="/ysblog/assets/js/8.87405e82.js"><link rel="prefetch" href="/ysblog/assets/js/9.de91e189.js">
+    <link rel="stylesheet" href="/ysblog/assets/css/0.styles.e661b340.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/ysblog/" class="home-link router-link-active"><!----> <span class="site-name">大木_笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/ysblog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端" class="mobile-dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/web/JS/blog1.html" class="nav-link">
+  JS
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/browser/blog1.html" class="nav-link">
+  浏览器
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/jQuery/blog1.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/underscore/blog1.html" class="nav-link">
+  underscore
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/webpack/blog1.html" class="nav-link">
+  webpack
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/vue/blog1.html" class="nav-link">
+  vue
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据结构" class="dropdown-title"><span class="title">数据结构</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据结构" class="mobile-dropdown-title"><span class="title">数据结构</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/DataStructure/queue/blog1.html" class="nav-link">
+  队列
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/other/regex/blog1.html" class="nav-link">
+  正则表达式
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/ysblog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端" class="mobile-dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/web/JS/blog1.html" class="nav-link">
+  JS
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/browser/blog1.html" class="nav-link">
+  浏览器
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/jQuery/blog1.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/underscore/blog1.html" class="nav-link">
+  underscore
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/webpack/blog1.html" class="nav-link">
+  webpack
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/vue/blog1.html" class="nav-link">
+  vue
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据结构" class="dropdown-title"><span class="title">数据结构</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据结构" class="mobile-dropdown-title"><span class="title">数据结构</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/DataStructure/queue/blog1.html" class="nav-link">
+  队列
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/other/regex/blog1.html" class="nav-link">
+  正则表达式
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>jQuery</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/ysblog/web/jQuery/blog1.html" aria-current="page" class="active sidebar-link">jQuery $ 原理及extend函数源码实现</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ysblog/web/jQuery/blog1.html#jquery创建对象" class="sidebar-link">jQuery创建对象</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ysblog/web/jQuery/blog1.html#前提" class="sidebar-link">前提</a></li><li class="sidebar-sub-header"><a href="/ysblog/web/jQuery/blog1.html#实现" class="sidebar-link">实现</a></li><li class="sidebar-sub-header"><a href="/ysblog/web/jQuery/blog1.html#任意对象扩展" class="sidebar-link">任意对象扩展</a></li><li class="sidebar-sub-header"><a href="/ysblog/web/jQuery/blog1.html#本身扩展及实例对象扩展" class="sidebar-link">本身扩展及实例对象扩展</a></li><li class="sidebar-sub-header"><a href="/ysblog/web/jQuery/blog1.html#进阶" class="sidebar-link">进阶</a></li></ul></li></ul></li><li><a href="/ysblog/web/jQuery/blog2.html" class="sidebar-link">jQuery Callbacks源码分析</a></li><li><a href="/ysblog/web/jQuery/blog3.html" class="sidebar-link">jQuery 延时对象Deferred简单实现</a></li><li><a href="/ysblog/web/jQuery/blog4.html" class="sidebar-link">jQuery 缓存Data对象及队列queue</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="jquery-原理及extend函数源码实现"><a href="#jquery-原理及extend函数源码实现" class="header-anchor">#</a> jQuery $ 原理及extend函数源码实现</h1> <h2 id="jquery创建对象"><a href="#jquery创建对象" class="header-anchor">#</a> jQuery创建对象</h2> <h3 id="前提"><a href="#前提" class="header-anchor">#</a> 前提</h3> <p>jQuery在页面直接通过$调用</p> <ol><li>$ 就是jQuery的别称</li> <li>通过 $() 创建jQuery的实例对象</li></ol> <h3 id="实现"><a href="#实现" class="header-anchor">#</a> 实现</h3> <div class="language-JavaScript extra-class"><pre class="language-javascript"><code><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">root</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> <span class="token function-variable function">jQuery</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">jQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    root<span class="token punctuation">.</span>$ <span class="token operator">=</span> root<span class="token punctuation">.</span>jQuery <span class="token operator">=</span> jQuery
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>$<span class="token punctuation">)</span>
+</code></pre></div><p>一开始的思考是这样实现，打印$可以直接打印出jQuery构造函数，但是当创建jQuery实例对象的时候，会进入一个死循环</p> <div class="language-HTML extra-class"><pre class="language-html"><code>console.log($())    //不停的调用jQuery构造函数
+</code></pre></div><p>如何避免这一问题呢，这里要用到共享原型的设计,将jQuery原型对象上面扩展一个init方法，该方法的原型对象指向jQuery的原型对象</p> <div class="language-JavaScript extra-class"><pre class="language-javascript"><code><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">root</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> <span class="token function-variable function">jQuery</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">jQuery<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>init</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">//返回的是init实例对象,该原型对象跟jQuery原型对象相等</span>
+    <span class="token punctuation">}</span>
+    jQuery<span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token punctuation">{</span>
+        <span class="token function-variable function">init</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//共享原型对象</span>
+    jQuery<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>init<span class="token punctuation">.</span>prototype <span class="token operator">=</span> jQuery<span class="token punctuation">.</span>prototype
+    root<span class="token punctuation">.</span>$ <span class="token operator">=</span> root<span class="token punctuation">.</span>jQuery <span class="token operator">=</span> jQuery
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>
+</code></pre></div><p>当再次打印出$()，返回的是init的实例对象，想要扩展jQuery方法，只需要在jQuery.prototype上面扩展方法即可，init实例对象也能访问该方法</p> <div class="language-JavaScript extra-class"><pre class="language-javascript"><code><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">root</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> <span class="token function-variable function">jQuery</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">jQuery<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>init</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">//返回的是init实例对象,该原型对象跟jQuery原型对象相等</span>
+    <span class="token punctuation">}</span>
+    jQuery<span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token punctuation">{</span>
+        <span class="token function-variable function">init</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">method</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token number">123</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//共享原型对象</span>
+    jQuery<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>init<span class="token punctuation">.</span>prototype <span class="token operator">=</span> jQuery<span class="token punctuation">.</span>prototype
+    root<span class="token punctuation">.</span>$ <span class="token operator">=</span> root<span class="token punctuation">.</span>jQuery <span class="token operator">=</span> jQuery
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">$</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">method</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>   <span class="token comment">//123</span>
+</code></pre></div><h1 id="extend"><a href="#extend" class="header-anchor">#</a> extend</h1> <p>jQuery的extend有很多种调用方法</p> <div class="language-JavaScript extra-class"><pre class="language-javascript"><code><span class="token comment">//任意对象扩展</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> $<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span>name<span class="token operator">:</span> <span class="token string">&quot;ys&quot;</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">//往其本身扩展</span>
+$<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+   <span class="token function-variable function">work</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+jQuery<span class="token punctuation">.</span><span class="token function">work</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">//实例对象扩展</span>
+$<span class="token punctuation">.</span>fn<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    sex<span class="token operator">:</span> <span class="token string">&quot;男&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">jQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>sex  <span class="token comment">//男</span>
+</code></pre></div><h3 id="任意对象扩展"><a href="#任意对象扩展" class="header-anchor">#</a> 任意对象扩展</h3> <div class="language-JavaScript extra-class"><pre class="language-javascript"><code><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">root</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> <span class="token function-variable function">jQuery</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">jQuery<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>init</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">//返回的是init实例对象,该原型对象跟jQuery原型对象相等</span>
+    <span class="token punctuation">}</span>
+    jQuery<span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token punctuation">{</span>
+        <span class="token function-variable function">init</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">method</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token number">123</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    jQuery<span class="token punctuation">.</span><span class="token function-variable function">extend</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">var</span> targe <span class="token operator">=</span> arguments<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token keyword">var</span> length <span class="token operator">=</span> arguments<span class="token punctuation">.</span>length
+        <span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">1</span>
+        <span class="token keyword">var</span> option<span class="token punctuation">,</span> name
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> targe <span class="token operator">!==</span> <span class="token string">&quot;object&quot;</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            targe <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>option <span class="token operator">=</span> arguments<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">for</span><span class="token punctuation">(</span>name <span class="token keyword">in</span> option<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    targe<span class="token punctuation">[</span>name<span class="token punctuation">]</span> <span class="token operator">=</span> option<span class="token punctuation">[</span>name<span class="token punctuation">]</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> targe
+    <span class="token punctuation">}</span>
+    <span class="token comment">//共享原型对象</span>
+    jQuery<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>init<span class="token punctuation">.</span>prototype <span class="token operator">=</span> jQuery<span class="token punctuation">.</span>fn
+    root<span class="token punctuation">.</span>$ <span class="token operator">=</span> root<span class="token punctuation">.</span>jQuery <span class="token operator">=</span> jQuery
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>
+
+<span class="token keyword">var</span> obj <span class="token operator">=</span> $<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span><span class="token punctuation">{</span>sex<span class="token operator">:</span> <span class="token string">&quot;男&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span>name<span class="token operator">:</span> <span class="token string">&quot;ys&quot;</span><span class="token punctuation">}</span><span class="token punctuation">)</span>   <span class="token comment">//{sex: &quot;男&quot;, name: &quot;ys&quot;}</span>
+</code></pre></div><h3 id="本身扩展及实例对象扩展"><a href="#本身扩展及实例对象扩展" class="header-anchor">#</a> 本身扩展及实例对象扩展</h3> <p>实例对象扩展展只需要将jQuery.fn = jQuery.prototype 以及 jQuery.fn.extend = jQuery.extend</p> <div class="language-JavaScript extra-class"><pre class="language-javascript"><code><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">root</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> <span class="token function-variable function">jQuery</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">jQuery<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>init</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">//返回的是init实例对象,该原型对象跟jQuery原型对象相等</span>
+    <span class="token punctuation">}</span>
+    jQuery<span class="token punctuation">.</span>fn <span class="token operator">=</span> jQuery<span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token punctuation">{</span>
+        <span class="token function-variable function">init</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">method</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token number">123</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    jQuery<span class="token punctuation">.</span>fn<span class="token punctuation">.</span>extend <span class="token operator">=</span> jQuery<span class="token punctuation">.</span><span class="token function-variable function">extend</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">var</span> targe <span class="token operator">=</span> arguments<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token keyword">var</span> length <span class="token operator">=</span> arguments<span class="token punctuation">.</span>length
+        <span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">1</span>
+        <span class="token keyword">var</span> option<span class="token punctuation">,</span> name
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> targe <span class="token operator">!==</span> <span class="token string">&quot;object&quot;</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            targe <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">//参数个数等于1，说明是往自身扩展</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>i <span class="token operator">===</span> length<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            targe <span class="token operator">=</span> <span class="token keyword">this</span>
+            i<span class="token operator">--</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>option <span class="token operator">=</span> arguments<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">for</span><span class="token punctuation">(</span>name <span class="token keyword">in</span> option<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    targe<span class="token punctuation">[</span>name<span class="token punctuation">]</span> <span class="token operator">=</span> option<span class="token punctuation">[</span>name<span class="token punctuation">]</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> targe
+    <span class="token punctuation">}</span>
+    <span class="token comment">//共享原型对象</span>
+    jQuery<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>init<span class="token punctuation">.</span>prototype <span class="token operator">=</span> jQuery<span class="token punctuation">.</span>fn
+    root<span class="token punctuation">.</span>$ <span class="token operator">=</span> root<span class="token punctuation">.</span>jQuery <span class="token operator">=</span> jQuery
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>
+
+<span class="token keyword">var</span> obj <span class="token operator">=</span> $<span class="token punctuation">.</span>fn<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span><span class="token punctuation">{</span>sex<span class="token operator">:</span> <span class="token string">&quot;男&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span>name<span class="token operator">:</span> <span class="token string">&quot;ys&quot;</span><span class="token punctuation">}</span><span class="token punctuation">)</span>   <span class="token comment">//{sex: &quot;男&quot;, name: &quot;ys&quot;}</span>
+
+<span class="token comment">//往其本身扩展</span>
+$<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token function-variable function">work</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">'搬砖'</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>jQuery<span class="token punctuation">.</span><span class="token function">work</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment">//搬砖</span>
+</code></pre></div><h3 id="进阶"><a href="#进阶" class="header-anchor">#</a> 进阶</h3> <p>extend方法还接受一个deep属性，指示是否深度合并对象，如果只是按上面的代码扩展对象，重复的属性会被覆盖，而不是合并</p> <div class="language-JavaScript extra-class"><pre class="language-javascript"><code><span class="token keyword">var</span> obj1 <span class="token operator">=</span> <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">&quot;ys&quot;</span><span class="token punctuation">,</span>
+    attr<span class="token operator">:</span> <span class="token punctuation">{</span>
+        age<span class="token operator">:</span> <span class="token string">&quot;18&quot;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">var</span> obj2 <span class="token operator">=</span> <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">&quot;ys&quot;</span><span class="token punctuation">,</span>
+    attr<span class="token operator">:</span> <span class="token punctuation">{</span>
+        sex<span class="token operator">:</span> <span class="token string">&quot;男&quot;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> $<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> obj1<span class="token punctuation">,</span> obj2<span class="token punctuation">)</span>
+
+<span class="token comment">//后面得属性会覆盖之前的属性</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span>    <span class="token comment">//{name: &quot;ys&quot;, attr: {sex: &quot;男&quot;}}</span>
+</code></pre></div><p>如何才能对象合并而不是覆盖,以及做到对象的深拷贝呢? 接受的第一个参数传deep，true跟false</p> <div class="language-JavaScript extra-class"><pre class="language-javascript"><code><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">root</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> <span class="token function-variable function">jQuery</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">jQuery<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>init</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">//返回的是init实例对象,该原型对象跟jQuery原型对象相等</span>
+    <span class="token punctuation">}</span>
+    jQuery<span class="token punctuation">.</span>fn <span class="token operator">=</span> jQuery<span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token punctuation">{</span>
+        <span class="token function-variable function">init</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">method</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token number">123</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    jQuery<span class="token punctuation">.</span>fn<span class="token punctuation">.</span>extend <span class="token operator">=</span> jQuery<span class="token punctuation">.</span><span class="token function-variable function">extend</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">var</span> targe <span class="token operator">=</span> arguments<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token keyword">var</span> length <span class="token operator">=</span> arguments<span class="token punctuation">.</span>length
+        <span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">1</span>
+        <span class="token keyword">var</span> deep <span class="token operator">=</span> <span class="token boolean">false</span>
+        <span class="token keyword">var</span> option<span class="token punctuation">,</span> name<span class="token punctuation">,</span> copy<span class="token punctuation">,</span> src<span class="token punctuation">,</span> copyIsArr<span class="token punctuation">,</span> clone
+        <span class="token comment">//深拷贝，浅拷贝</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> targe <span class="token operator">===</span> <span class="token string">&quot;boolean&quot;</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            deep <span class="token operator">=</span> targe
+            targe <span class="token operator">=</span> arguments<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>  <span class="token comment">//为了不改变之前的步骤，将参数第二项赋给target,并且将i改为2</span>
+            i <span class="token operator">=</span> <span class="token number">2</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> targe <span class="token operator">!==</span> <span class="token string">&quot;object&quot;</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            targe <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">//参数个数等于1，说明是往自身扩展</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>i <span class="token operator">===</span> length<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            targe <span class="token operator">=</span> <span class="token keyword">this</span>
+            i<span class="token operator">--</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>option <span class="token operator">=</span> arguments<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">for</span><span class="token punctuation">(</span>name <span class="token keyword">in</span> option<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    copy <span class="token operator">=</span> option<span class="token punctuation">[</span>name<span class="token punctuation">]</span>
+                    src <span class="token operator">=</span> targe<span class="token punctuation">[</span>name<span class="token punctuation">]</span>
+                    <span class="token keyword">if</span><span class="token punctuation">(</span>deep <span class="token operator">&amp;&amp;</span> copy <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>copy <span class="token keyword">instanceof</span> <span class="token class-name">Object</span> <span class="token operator">||</span> <span class="token punctuation">(</span>copyIsArr <span class="token operator">=</span> copy <span class="token keyword">instanceof</span> <span class="token class-name">Array</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//判断是否是深拷贝及浅拷贝，copyIsArr判断是否是数组</span>
+                        <span class="token keyword">if</span><span class="token punctuation">(</span>copyIsArr<span class="token punctuation">)</span><span class="token punctuation">{</span>  <span class="token comment">//copy是数组</span>
+                            copyIsArr <span class="token operator">=</span> <span class="token boolean">false</span>
+                            clone <span class="token operator">=</span> src <span class="token operator">&amp;&amp;</span> src <span class="token keyword">instanceof</span> <span class="token class-name">Array</span> <span class="token operator">?</span> src <span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+                        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                            clone <span class="token operator">=</span> src <span class="token operator">&amp;&amp;</span> src <span class="token keyword">instanceof</span> <span class="token class-name">Object</span> <span class="token operator">?</span> src <span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+                        <span class="token punctuation">}</span>
+                        targe<span class="token punctuation">[</span>name<span class="token punctuation">]</span> <span class="token operator">=</span> jQuery<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span>deep<span class="token punctuation">,</span> clone<span class="token punctuation">,</span> copy<span class="token punctuation">)</span>  <span class="token comment">//递归调用，深拷贝</span>
+                    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>copy<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                        targe<span class="token punctuation">[</span>name<span class="token punctuation">]</span> <span class="token operator">=</span> copy
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> targe
+    <span class="token punctuation">}</span>
+    <span class="token comment">//共享原型对象</span>
+    jQuery<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>init<span class="token punctuation">.</span>prototype <span class="token operator">=</span> jQuery<span class="token punctuation">.</span>fn
+    root<span class="token punctuation">.</span>$ <span class="token operator">=</span> root<span class="token punctuation">.</span>jQuery <span class="token operator">=</span> jQuery
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>
+
+<span class="token comment">//两层</span>
+<span class="token keyword">var</span> obj1 <span class="token operator">=</span> <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">&quot;ys&quot;</span><span class="token punctuation">,</span>
+    attr<span class="token operator">:</span> <span class="token punctuation">{</span>
+        age<span class="token operator">:</span> <span class="token string">&quot;18&quot;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">var</span> obj2 <span class="token operator">=</span> <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">&quot;ys&quot;</span><span class="token punctuation">,</span>
+    attr<span class="token operator">:</span> <span class="token punctuation">{</span>
+        sex<span class="token operator">:</span> <span class="token string">&quot;男&quot;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> $<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> obj1<span class="token punctuation">,</span> obj2<span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span>    <span class="token comment">//{name: &quot;ys&quot;, attr: {age: &quot;18&quot;, sex: &quot;男&quot;}}</span>
+
+<span class="token comment">//三层</span>
+<span class="token keyword">var</span> obj1 <span class="token operator">=</span> <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">&quot;ys&quot;</span><span class="token punctuation">,</span>
+    attr<span class="token operator">:</span> <span class="token punctuation">{</span>
+        age<span class="token operator">:</span> <span class="token punctuation">{</span>
+            a<span class="token operator">:</span> <span class="token number">1</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">var</span> obj2 <span class="token operator">=</span> <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">&quot;ys&quot;</span><span class="token punctuation">,</span>
+    attr<span class="token operator">:</span> <span class="token punctuation">{</span>
+        sex<span class="token operator">:</span> <span class="token string">&quot;男&quot;</span><span class="token punctuation">,</span>
+        age<span class="token operator">:</span> <span class="token punctuation">{</span>
+            b<span class="token operator">:</span> <span class="token number">2</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> $<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> obj1<span class="token punctuation">,</span> obj2<span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span>     <span class="token comment">//{name: &quot;ys&quot;, attr: {age: {a: 1, b: 2}, sex: &quot;男&quot;}}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><!----> <span class="next"><a href="/ysblog/web/jQuery/blog2.html">
+        jQuery Callbacks源码分析
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/ysblog/assets/js/app.05f40ecb.js" defer></script><script src="/ysblog/assets/js/2.101f09ec.js" defer></script><script src="/ysblog/assets/js/27.132ee99d.js" defer></script>
+  </body>
+</html>

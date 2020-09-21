@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>vue项目开发，基于axios二次封装 | 大木_笔记</title>
+    <meta name="generator" content="VuePress 1.5.4">
+    
+    <meta name="description" content="记录工作和学习过程中的笔记">
+    <link rel="preload" href="/ysblog/assets/css/0.styles.e661b340.css" as="style"><link rel="preload" href="/ysblog/assets/js/app.05f40ecb.js" as="script"><link rel="preload" href="/ysblog/assets/js/2.101f09ec.js" as="script"><link rel="preload" href="/ysblog/assets/js/35.72665780.js" as="script"><link rel="prefetch" href="/ysblog/assets/js/10.aba1ce7e.js"><link rel="prefetch" href="/ysblog/assets/js/11.232cd946.js"><link rel="prefetch" href="/ysblog/assets/js/12.22125e24.js"><link rel="prefetch" href="/ysblog/assets/js/13.641bf3cf.js"><link rel="prefetch" href="/ysblog/assets/js/14.24ccc943.js"><link rel="prefetch" href="/ysblog/assets/js/15.56161087.js"><link rel="prefetch" href="/ysblog/assets/js/16.205bd373.js"><link rel="prefetch" href="/ysblog/assets/js/17.bd633a29.js"><link rel="prefetch" href="/ysblog/assets/js/18.33d43e7e.js"><link rel="prefetch" href="/ysblog/assets/js/19.a2911d20.js"><link rel="prefetch" href="/ysblog/assets/js/20.07624a1c.js"><link rel="prefetch" href="/ysblog/assets/js/21.a4151fba.js"><link rel="prefetch" href="/ysblog/assets/js/22.141540b5.js"><link rel="prefetch" href="/ysblog/assets/js/23.91fde9ee.js"><link rel="prefetch" href="/ysblog/assets/js/24.cca104ac.js"><link rel="prefetch" href="/ysblog/assets/js/25.5cc0b6e3.js"><link rel="prefetch" href="/ysblog/assets/js/26.5835c007.js"><link rel="prefetch" href="/ysblog/assets/js/27.132ee99d.js"><link rel="prefetch" href="/ysblog/assets/js/28.dae014a1.js"><link rel="prefetch" href="/ysblog/assets/js/29.a922ac25.js"><link rel="prefetch" href="/ysblog/assets/js/3.859ec158.js"><link rel="prefetch" href="/ysblog/assets/js/30.215eea15.js"><link rel="prefetch" href="/ysblog/assets/js/31.a6a3ecad.js"><link rel="prefetch" href="/ysblog/assets/js/32.2f04c66d.js"><link rel="prefetch" href="/ysblog/assets/js/33.2e16f460.js"><link rel="prefetch" href="/ysblog/assets/js/34.6f7d019b.js"><link rel="prefetch" href="/ysblog/assets/js/36.f8c9d77b.js"><link rel="prefetch" href="/ysblog/assets/js/37.aa3efe17.js"><link rel="prefetch" href="/ysblog/assets/js/38.6cb4e1db.js"><link rel="prefetch" href="/ysblog/assets/js/39.43e17a0d.js"><link rel="prefetch" href="/ysblog/assets/js/4.ee24ae0f.js"><link rel="prefetch" href="/ysblog/assets/js/5.bd54095f.js"><link rel="prefetch" href="/ysblog/assets/js/6.dcc1de99.js"><link rel="prefetch" href="/ysblog/assets/js/7.316c9739.js"><link rel="prefetch" href="/ysblog/assets/js/8.87405e82.js"><link rel="prefetch" href="/ysblog/assets/js/9.de91e189.js">
+    <link rel="stylesheet" href="/ysblog/assets/css/0.styles.e661b340.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/ysblog/" class="home-link router-link-active"><!----> <span class="site-name">大木_笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/ysblog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端" class="mobile-dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/web/JS/blog1.html" class="nav-link">
+  JS
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/browser/blog1.html" class="nav-link">
+  浏览器
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/jQuery/blog1.html" class="nav-link">
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/underscore/blog1.html" class="nav-link">
+  underscore
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/webpack/blog1.html" class="nav-link">
+  webpack
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/vue/blog1.html" class="nav-link">
+  vue
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据结构" class="dropdown-title"><span class="title">数据结构</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据结构" class="mobile-dropdown-title"><span class="title">数据结构</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/DataStructure/queue/blog1.html" class="nav-link">
+  队列
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/other/regex/blog1.html" class="nav-link">
+  正则表达式
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/ysblog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端" class="mobile-dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/web/JS/blog1.html" class="nav-link">
+  JS
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/browser/blog1.html" class="nav-link">
+  浏览器
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/jQuery/blog1.html" class="nav-link">
+  jQuery
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/underscore/blog1.html" class="nav-link">
+  underscore
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/webpack/blog1.html" class="nav-link">
+  webpack
+</a></li><li class="dropdown-item"><!----> <a href="/ysblog/web/vue/blog1.html" class="nav-link">
+  vue
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据结构" class="dropdown-title"><span class="title">数据结构</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据结构" class="mobile-dropdown-title"><span class="title">数据结构</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/DataStructure/queue/blog1.html" class="nav-link">
+  队列
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ysblog/other/regex/blog1.html" class="nav-link">
+  正则表达式
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>vue</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/ysblog/web/vue/blog1.html" class="sidebar-link">vue-property-decorator</a></li><li><a href="/ysblog/web/vue/blog2.html" aria-current="page" class="active sidebar-link">vue项目开发，基于axios二次封装</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ysblog/web/vue/blog2.html#功能确立" class="sidebar-link">功能确立</a></li><li class="sidebar-sub-header"><a href="/ysblog/web/vue/blog2.html#代码" class="sidebar-link">代码</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ysblog/web/vue/blog2.html#接口数组" class="sidebar-link">接口数组</a></li><li class="sidebar-sub-header"><a href="/ysblog/web/vue/blog2.html#调用" class="sidebar-link">调用</a></li><li class="sidebar-sub-header"><a href="/ysblog/web/vue/blog2.html#核心代码-myaxios-js" class="sidebar-link">核心代码，myAxios.js</a></li></ul></li></ul></li><li><a href="/ysblog/web/vue/blog3.html" class="sidebar-link">vue响应式原理简单实现</a></li><li><a href="/ysblog/web/vue/blog4.html" class="sidebar-link">vue异步更新队列及nextTick</a></li><li><a href="/ysblog/web/vue/blog5.html" class="sidebar-link">vue3.0 API</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="vue项目开发-基于axios二次封装"><a href="#vue项目开发-基于axios二次封装" class="header-anchor">#</a> vue项目开发，基于axios二次封装</h1> <h2 id="功能确立"><a href="#功能确立" class="header-anchor">#</a> 功能确立</h2> <ol><li>读取接口数组，把接口名化为api，调用方法即发送请求</li> <li>请求与数据绑定自动化，即返回的数据自动赋值给页面数据（有待商讨）</li> <li>防止接口重复调用，表单重复提交</li></ol> <h2 id="代码"><a href="#代码" class="header-anchor">#</a> 代码</h2> <h3 id="接口数组"><a href="#接口数组" class="header-anchor">#</a> 接口数组</h3> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">//main.js</span>
+<span class="token keyword">import</span> myAxios <span class="token keyword">from</span> <span class="token string">'./assets/myAxios'</span>
+
+<span class="token comment">//将myAxios绑定到vue原型上面， 虽然有污染原型的嫌疑，但不失为一个好的方法</span>
+<span class="token class-name">Vue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>myAxios <span class="token operator">=</span> <span class="token function">myAxios</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">'api1'</span><span class="token punctuation">,</span>                       <span class="token comment">//调用的接口名称</span>
+    url<span class="token operator">:</span> <span class="token string">'https://0.0.0.0:8080/api1'</span>    <span class="token comment">//接口地址</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">'api2'</span><span class="token punctuation">,</span>
+    url<span class="token operator">:</span> <span class="token string">'https://0.0.0.0:8080/api2'</span>
+  <span class="token punctuation">}</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre></div><h3 id="调用"><a href="#调用" class="header-anchor">#</a> 调用</h3> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token function">mounted</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">//绑定当前组件，在myAxios.js里面操作当前组件数据</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>myAxios<span class="token punctuation">.</span><span class="token function">bindThis</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>
+    
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">sendUrl</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+methods<span class="token operator">:</span><span class="token punctuation">{</span>
+    <span class="token comment">//所有的接口方法都返回一个promise，方便使用async，await</span>
+    <span class="token keyword">async</span> <span class="token function">sendUrl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>myAxios<span class="token punctuation">.</span><span class="token function">api1</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token comment">//数据</span>
+        data<span class="token operator">:</span> <span class="token punctuation">{</span>
+          late<span class="token operator">:</span> <span class="token string">'22.52291'</span><span class="token punctuation">,</span>
+          lone<span class="token operator">:</span> <span class="token string">'114.05454'</span><span class="token punctuation">,</span>
+          cityNumr<span class="token operator">:</span> <span class="token number">440300</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token comment">//自定义headers</span>
+        headers<span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token string">&quot;qqq&quot;</span><span class="token operator">:</span> <span class="token number">123</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>creeTime <span class="token operator">=</span> res<span class="token punctuation">.</span>creeTime
+        <span class="token comment">//默认绑定数据 this.api1 = res</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    
+      <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>myAxios<span class="token punctuation">.</span><span class="token function">api2</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token comment">//数据</span>
+        data<span class="token operator">:</span> <span class="token punctuation">{</span>
+          userName<span class="token operator">:</span> <span class="token string">&quot;哈哈&quot;</span><span class="token punctuation">,</span>
+          userTele<span class="token operator">:</span> <span class="token number">11111111</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        type<span class="token operator">:</span> <span class="token string">'post'</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+        <span class="token comment">//默认绑定数据 this.api2 = res</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="核心代码-myaxios-js"><a href="#核心代码-myaxios-js" class="header-anchor">#</a> 核心代码，myAxios.js</h3> <p>四个主要模块</p> <ol><li>初始化模块</li> <li>请求生成模块</li> <li>请求控制模块</li> <li>请求处理模块</li></ol> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">//myAxios.js</span>
+<span class="token keyword">import</span> axios <span class="token keyword">from</span> <span class="token string">'axios'</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">arr</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">function</span> <span class="token function">_myaxios</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>vueObj <span class="token operator">=</span> <span class="token keyword">null</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token boolean">true</span>  <span class="token comment">//防止重复提交</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//绑定处于当前的vue组件</span>
+    <span class="token class-name">_myaxios</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">bindThis</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">object</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>vueObj <span class="token operator">=</span> object
+    <span class="token punctuation">}</span>
+    <span class="token comment">//生成请求</span>
+    <span class="token class-name">_myaxios</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">getAxios</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">config</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment">//自定义数据</span>
+        <span class="token keyword">var</span> _url <span class="token operator">=</span> config<span class="token punctuation">.</span>url
+        <span class="token keyword">var</span> _type <span class="token operator">=</span> config<span class="token punctuation">.</span>type
+        <span class="token keyword">var</span> _data <span class="token operator">=</span> config<span class="token punctuation">.</span>data
+        <span class="token keyword">var</span> _headers <span class="token operator">=</span> config<span class="token punctuation">.</span>headers
+
+        <span class="token comment">//公共</span>
+        <span class="token keyword">var</span> instance <span class="token operator">=</span> axios<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            headers<span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token string">'Content-Type'</span><span class="token operator">:</span> <span class="token string">'application/json'</span><span class="token punctuation">,</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//请求，目前只添加get，post</span>
+        <span class="token keyword">var</span> fatory <span class="token operator">=</span> <span class="token punctuation">{</span>
+            <span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">return</span> instance<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>_url<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+                    params<span class="token operator">:</span> _data<span class="token punctuation">,</span>
+                    headers<span class="token operator">:</span> _headers
+                <span class="token punctuation">}</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token function">post</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">return</span> instance<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span>_url<span class="token punctuation">,</span>data<span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> fatory<span class="token punctuation">[</span>_type<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//发送请求</span>
+    <span class="token class-name">_myaxios</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">sendAxios</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">config</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">var</span> _axios <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getAxios</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span>
+        
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>status <span class="token operator">||</span> <span class="token operator">!</span>config<span class="token punctuation">.</span>isBlock<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            config<span class="token punctuation">.</span>isBlock <span class="token operator">?</span> <span class="token keyword">this</span><span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token boolean">false</span> <span class="token operator">:</span> <span class="token string">''</span>
+            _axios<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token boolean">true</span>
+
+                <span class="token comment">//默认数据绑定</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">handlerAxios</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>dataName<span class="token punctuation">,</span> res<span class="token punctuation">.</span>data<span class="token punctuation">.</span>result<span class="token punctuation">)</span> 
+
+                config<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>vueObj<span class="token punctuation">,</span> res<span class="token punctuation">.</span>data<span class="token punctuation">.</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">err</span> <span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+                config<span class="token punctuation">.</span><span class="token function">reject</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>vueObj<span class="token punctuation">,</span> res<span class="token punctuation">.</span>data<span class="token punctuation">.</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//处理请求,公共请求处理</span>
+    <span class="token class-name">_myaxios</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">handlerAxios</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">dataName<span class="token punctuation">,</span> data</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>vueObj<span class="token punctuation">[</span>dataName<span class="token punctuation">]</span> <span class="token operator">=</span> data
+    <span class="token punctuation">}</span>
+    <span class="token comment">//初始化部分</span>
+    <span class="token keyword">var</span> myaxios <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">_myaxios</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    arr<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">item</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        myaxios<span class="token punctuation">[</span>item<span class="token punctuation">.</span>name<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">config</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+                myaxios<span class="token punctuation">.</span><span class="token function">sendAxios</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+                    resolve<span class="token punctuation">,</span>
+                    reject<span class="token punctuation">,</span>
+                    url<span class="token operator">:</span> item<span class="token punctuation">.</span>url<span class="token punctuation">,</span>
+                    type<span class="token operator">:</span> config <span class="token operator">&amp;&amp;</span> config<span class="token punctuation">.</span>type <span class="token operator">||</span> <span class="token string">'get'</span><span class="token punctuation">,</span>   <span class="token comment">//接口类型，默认get</span>
+                    headers<span class="token operator">:</span> config <span class="token operator">&amp;&amp;</span> config<span class="token punctuation">.</span>headers <span class="token operator">||</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    data<span class="token operator">:</span> config <span class="token operator">&amp;&amp;</span> config<span class="token punctuation">.</span>data <span class="token operator">||</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    dataName<span class="token operator">:</span> config <span class="token operator">&amp;&amp;</span> config<span class="token punctuation">.</span>dataName <span class="token operator">||</span> item<span class="token punctuation">.</span>name<span class="token punctuation">,</span><span class="token comment">//传入绑定当前vue组件数据，this[dataName] = res</span>
+                    isBlock<span class="token operator">:</span> config <span class="token operator">&amp;&amp;</span> config<span class="token punctuation">.</span>isBlock <span class="token operator">||</span> <span class="token boolean">false</span><span class="token punctuation">,</span>  <span class="token comment">//是否阻塞发送请求true为阻塞，false为非阻塞,防止重复发送请求</span>
+                <span class="token punctuation">}</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">return</span> myaxios
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/ysblog/web/vue/blog1.html" class="prev">
+        vue-property-decorator
+      </a></span> <span class="next"><a href="/ysblog/web/vue/blog3.html">
+        vue响应式原理简单实现
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/ysblog/assets/js/app.05f40ecb.js" defer></script><script src="/ysblog/assets/js/2.101f09ec.js" defer></script><script src="/ysblog/assets/js/35.72665780.js" defer></script>
+  </body>
+</html>
